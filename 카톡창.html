@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오톡 대화 순차 보기</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f4f4f5; /* 화면 밖 배경색 지정 */
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center; /* 스마트폰 화면 중앙 정렬 */
+        }
+        .app-wrapper {
+            width: 100%;
+            max-width: 380px; /* 스마트폰 가로 사이즈로 축소 */
+            background-color: #abc1d1; /* 카카오톡 배경색 */
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1); /* 폰 화면 입체감 */
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 10px 90px 10px; /* 하단 버튼 공간 확보 */
+        }
+        .date-line {
+            display: none; /* 초기 숨김 */
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            color: #ffffff;
+            font-size: 12px;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            align-self: center;
+        }
+        .msg-row {
+            display: none; /* 초기 숨김 */
+            margin-bottom: 12px;
+            width: 100%;
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .msg-row.me {
+            flex-direction: row-reverse;
+        }
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 15px;
+            background-color: #ccc;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            max-width: 70%;
+        }
+        .sender-name {
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .bubble-wrapper {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 4px;
+        }
+        .me .bubble-wrapper {
+            flex-direction: row-reverse;
+        }
+        .bubble {
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.4;
+            position: relative;
+            word-break: break-all;
+        }
+        .other .bubble {
+            background-color: #ffffff;
+            color: #000;
+        }
+        .me .bubble {
+            background-color: #fee500;
+            color: #000;
+        }
+        .timestamp {
+            font-size: 10px;
+            color: #555;
+            margin: 0 5px;
+            white-space: nowrap;
+        }
+        .reply-box {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-left: 2px solid #888;
+            padding: 4px 8px;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #666;
+            border-radius: 4px;
+        }
+        .header {
+            position: sticky;
+            top: 0;
+            background-color: #abc1d1;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: 100;
+        }
+        .header h1 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        /* 하단 컨트롤 바 */
+        .controls {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 380px;
+            background-color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 200;
+            box-sizing: border-box;
+            border-radius: 20px 20px 0 0; /* 상단 살짝 둥글게 */
+        }
+        .btn-next {
+            background-color: #fee500;
+            color: #3c1e1e;
+            padding: 10px 30px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.1s;
+        }
+        .btn-next:active {
+            transform: scale(0.95);
+        }
+        .btn-reset {
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-wrapper">
+    <div class="header">
+        <button onclick="location.reload()">←</button>
+        <h1>권도희</h1>
+    </div>
+
+    <div class="chat-container" id="chat-container">
+        <div class="date-line step">2025년 1월 26일 일요일</div>
+    <!-- 1월 26일 대화 -->
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">반가워요 ㅎㅎ</div><div class="timestamp">오후 8:57</div></div>
+            <div class="bubble-wrapper"><div class="bubble">한번더 마주칠때 인사했는데 안쳐다봤어,,</div><div class="timestamp">오후 8:58</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">악ㅋㅋㅋ 못 봤나봐요ㅠ 안녕하세요</div><div class="timestamp">오후 12:22</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">ㅋㅋㅋ</div><div class="timestamp">오후 2:23</div></div>
+            <div class="bubble-wrapper"><div class="bubble">연락왜케 늦게했어요</div><div class="timestamp">오후 2:24</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">ㅎㅎ 연락 온 줄 몰랐어요ㅠ</div><div class="timestamp">오후 3:58</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">ㅎㅎ저도 어제 연락 빨리 하려했는데 사진 촬영 땜에 늦었네요</div><div class="timestamp">오후 4:42</div></div>
+            <div class="bubble-wrapper"><div class="bubble">당돌하셔서 좋았어요 어제</div><div class="timestamp">오후 4:43</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">킄ㅋㅋㅋ 친구 번호 따려고 했자나여</div><div class="timestamp">오후 5:08</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">ㅎㅎ 저도 궁금,,</div><div class="timestamp">오후 5:14</div></div>
+            <div class="bubble-wrapper"><div class="bubble">왜갑자기 그쪽으로 눈이 꽂혔는지,,</div><div class="timestamp">오후 5:15</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">ㅋㅋㅋㅋㅋㅋ 근데 저 진짜 07인뎀</div><div class="timestamp">오후 5:23</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">애기네 애기 ㅎㅎ</div><div class="timestamp">오후 5:32</div></div>
+            <div class="bubble-wrapper"><div class="bubble">이러면 돼요?</div><div class="timestamp">오후 5:32</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">아니ㅋㅋㅋㅋ 그러라는 게 아니라ㅠ 혹시 안 믿나 해서</div><div class="timestamp">오후 5:35</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">거짓말 할 느낌은 아니었어요 ㅎㅎ</div><div class="timestamp">오후 5:51</div></div>
+            <div class="bubble-wrapper"><div class="bubble">이쁘시다길래 보니까 진짜 예뻐서 믿죠 ㅎㅎ</div><div class="timestamp">오후 5:52</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">ㅋㅋㅋ 다행이당</div><div class="timestamp">오후 6:08</div></div>
+            <div class="bubble-wrapper"><div class="bubble">말 편하게 하셔두 대여</div><div class="timestamp">오후 6:08</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">ㅎㅎ 응 좋아</div><div class="timestamp">오후 6:14</div></div>
+            <div class="bubble-wrapper"><div class="bubble">모라부를까</div><div class="timestamp">오후 6:14</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">권도희</div><div class="timestamp">오후 6:41</div></div>
+            <div class="bubble-wrapper"><div class="bubble">제 이름이에여</div><div class="timestamp">오후 6:41</div></div>
+            <div class="bubble-wrapper"><div class="bubble">이름 뭐예여</div><div class="timestamp">오후 6:41</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">정승호야 이름 ㅎㅎ</div><div class="timestamp">오후 7:01</div></div>
+            <div class="bubble-wrapper"><div class="bubble">너랑 알아가게 될지 몰랐어 ㅎㅎ 신기</div><div class="timestamp">오후 7:01</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">ㅋㅋㅋ 저두여</div><div class="timestamp">오후 7:20</div></div>
+            <div class="bubble-wrapper"><div class="bubble">서울 어디 사는 거예요?</div><div class="timestamp">오후 7:20</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper">
+                <div class="bubble"><div class="reply-box">ㅋㅋㅋ 저두여</div>대답 귀엽네</div>
+                <div class="timestamp">오후 7:40</div>
+            </div>
+            <div class="bubble-wrapper"><div class="bubble">나 사업땜에 사당역쪽에서 부모님과 따로 살아 ㅎㅎ 어제도 일중,,</div><div class="timestamp">오후 7:42</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">헉... 주말에도 일하나 봐요</div><div class="timestamp">오후 10:47</div></div>
+            <div class="bubble-wrapper"><div class="bubble">앗 근데 저 내일 필리핀 가서 일주일 동안 아마 연락 잘 안 될 거예요ㅠ</div><div class="timestamp">오후 10:48</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">ㅋㅋㅋ 이제막 알아가는 사이인데?</div><div class="timestamp">오후 10:56</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">ㅋㅋㅋㅋ 그냥 그렇다구여</div><div class="timestamp">오후 11:05</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">알아서해 말고 머라딱히 할말없네</div><div class="timestamp">오후 11:14</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">언제 자여</div><div class="timestamp">오후 11:18</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">기분좀 풀리면</div><div class="timestamp">오후 11:19</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">아니... 왜요...</div><div class="timestamp">오후 11:23</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">당연한거아냐 너랑 연락하려고 용기냈는데</div><div class="timestamp">오후 11:31</div></div>
+            <div class="bubble-wrapper"><div class="bubble">일주일동안 연락안된다는데 기분좋으면 쓰레기아냐</div><div class="timestamp">오후 11:31</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">아니 그래도 최대한 연락할 수 있을 때 연락할게요</div><div class="timestamp">오후 11:35</div></div>
+            <div class="bubble-wrapper"><div class="bubble">필리핀 여행 5박 6일임!! 그 후에는 연락 진짜 잘 볼 수 있어요</div><div class="timestamp">오후 11:36</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">응 한번볼게</div><div class="timestamp">오후 11:49</div></div>
+            <div class="bubble-wrapper"><div class="bubble">나랑 장난치고 가볍게 지내고싶은거였으면 말해줘, 나 그런거 안조아해</div><div class="timestamp">오후 11:51</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">엥 저두 그런 거 안 좋아해요</div><div class="timestamp">오후 11:53</div></div>
+            <div class="bubble-wrapper"><div class="bubble">가볍게 만날 거면 일주일 연락 안 되어도 말 안 했을걸여</div><div class="timestamp">오후 11:54</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">음 도희가 생각보다 생각이 깊네</div><div class="timestamp">오후 11:56</div></div>
+            <div class="bubble-wrapper"><div class="bubble">어리다고 오해했어 다큰 애기였구나</div><div class="timestamp">오후 11:56</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">근데 저는 나이 딱히 신경 안 쓰는데</div><div class="timestamp">오후 11:58</div></div>
+            <div class="bubble-wrapper"><div class="bubble">오빠는 저희 나이 어떻게 생각해요</div><div class="timestamp">오후 11:59</div></div>
+        </div>
+    </div>
+
+    <!-- 1월 27일 대화 -->
+    <div class="date-line step">2025년 1월 27일 월요일</div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">나도 나이보다 마음이랑 느낌을 더봐</div><div class="timestamp">오전 12:02</div></div>
+            <div class="bubble-wrapper"><div class="bubble">근데 너가 적극적이지 않으면 나도 마음 덜 가겠지,, 그게 예의랑 남자의 모습이라고 생각해 배려</div><div class="timestamp">오전 12:02</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">음 그렇다면 오빠한테 적극적으로 다가갈게요~</div><div class="timestamp">오전 12:07</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">ㅎㅎ 말 되게 이쁘게하네,,</div><div class="timestamp">오전 12:19</div></div>
+            <div class="bubble-wrapper"><div class="bubble">언제자</div><div class="timestamp">오전 12:19</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">저 아까 조금 자서 안 졸려요 좀 늦게 잘 것 같은데</div><div class="timestamp">오전 12:20</div></div>
+            <div class="bubble-wrapper"><div class="bubble">오빠는요</div><div class="timestamp">오전 12:20</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">너랑 연락하면 설레네</div><div class="timestamp">오전 12:20</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">아니ㅋㅋㅋ 언제 자냐구여~</div><div class="timestamp">오전 12:21</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">마음좀 쓸어내리고 전화 상담 끝나야 잘거 같아</div><div class="timestamp">오전 12:28</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">전화 상담??</div><div class="timestamp">오전 12:29</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">사업중이자나 돈벌어서 너 맛난거 먹여야지</div><div class="timestamp">오전 12:29</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">아아 ㅋㅋㅋㅋ</div><div class="timestamp">오전 12:29</div></div>
+            <div class="bubble-wrapper"><div class="bubble">늦었는데 아직 일 중이구나ㅠ</div><div class="timestamp">오전 12:29</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">응 목소리 들을래?</div><div class="timestamp">오전 12:31</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">그럼 좋겠는데 저 지금은 전화 안대여 ㅠㅠ</div><div class="timestamp">오전 12:35</div></div>
+            <div class="bubble-wrapper"><div class="bubble">집이 아니라서ㅠㅠ 혼자 있는 것두 아니구ㅠ</div><div class="timestamp">오전 12:36</div></div>
+            <div class="bubble-wrapper"><div class="bubble">필리핀 갔다가 한국 다녀와서!! 목소리 들려ㅜ줘요</div><div class="timestamp">오전 12:36</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">필리핀에서 영어배워서 나한테 영어쓰겠네</div><div class="timestamp">오전 12:39</div></div>
+            <div class="bubble-wrapper"><div class="bubble">영어 듣기평가 ☺</div><div class="timestamp">오전 12:40</div></div>
+            <div class="bubble-wrapper"><div class="bubble">누구랑가 필리핀</div><div class="timestamp">오전 12:40</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">교회 쌤들이랑 교회 애들!!</div><div class="timestamp">오전 12:41</div></div>
+            <div class="bubble-wrapper"><div class="bubble">제가 기독교라서 ㅎㅎ</div><div class="timestamp">오전 12:41</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">흠,, 구래?</div><div class="timestamp">오전 12:45</div></div>
+            <div class="bubble-wrapper"><div class="bubble">사실 맘같아서는 안보내고 나랑 시간보내면 좋은데, 그러면 너무 이기적인거같고,,</div><div class="timestamp">오전 12:45</div></div>
+            <div class="bubble-wrapper"><div class="bubble">도희 하고싶은대로 해</div><div class="timestamp">오전 12:45</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">어떤 걸요? 필리핀? 교회?</div><div class="timestamp">오전 12:47</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">여행</div><div class="timestamp">오전 12:48</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">당장 오늘이 여행인데 어떻게 취소해요 ㅋㅌㅋㅌ</div><div class="timestamp">오전 12:54</div></div>
+            <div class="bubble-wrapper"><div class="bubble">오늘 오후 한 시 비행인데?</div><div class="timestamp">오전 12:54</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">그러니까 너하고싶은데로 하라구</div><div class="timestamp">오전 1:02</div></div>
+            <div class="bubble-wrapper"><div class="bubble">나민망하게 만들지말구</div><div class="timestamp">오전 1:02</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">여행 다녀와서 같이 시간 보내요 당장 여행 취소는 무리니까</div><div class="timestamp">오전 1:03</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">다녀와서 너피곤할수도 있자나</div><div class="timestamp">오전 1:05</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">뭐 그렇기야 하겠지만</div><div class="timestamp">오전 1:06</div></div>
+            <div class="bubble-wrapper"><div class="bubble">그래두 원래 여행 일정이 잡혀 있던 거니까ㅠ</div><div class="timestamp">오전 1:07</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper">
+                <div class="bubble"><div class="reply-box">여행 다녀와서 같이 시간 보내요 당장 여행 취소는 무리니까</div>응 말 이쁘게 해주니까 감동이야</div>
+                <div class="timestamp">오전 1:12</div>
+            </div>
+            <div class="bubble-wrapper"><div class="bubble">걸크느낌,,</div><div class="timestamp">오전 1:12</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">ㅋㅋㅋㅋㅋㅋ 오빠 안 피곤해요?</div><div class="timestamp">오전 1:17</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">응 피곤해</div><div class="timestamp">오전 1:24</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">아직 일 중이에요?ㅠ</div><div class="timestamp">오전 1:27</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">도희 낼 갈준비하느라 바쁜거아니야?</div><div class="timestamp">오전 1:35</div></div>
+            <div class="bubble-wrapper"><div class="bubble">내 걱정말구 너꺼 할거해두돼</div><div class="timestamp">오전 1:35</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">에이 여행 갈 준비는 진작에 다 했죠</div><div class="timestamp">오전 1:42</div></div>
+            <div class="bubble-wrapper"><div class="bubble">지금은 그냥 누워서 쉬는 중 ㅎㅎ</div><div class="timestamp">오전 1:42</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">응 그럼 너에 대해 더 알려줘 연애 몇번했는지,, 나랑은 연락 왜하고싶은지,,</div><div class="timestamp">오전 1:55</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">연애는 세 번해 봤어요 마지막 연애가 거의 일 년? 전이구... ㅎㅎ</div><div class="timestamp">오전 2:07</div></div>
+            <div class="bubble-wrapper"><div class="bubble">오빠랑 연락은 음...</div><div class="timestamp">오전 2:07</div></div>
+            <div class="bubble-wrapper"><div class="bubble">번호 물어볼 때 진짜 엄청 잠깐 이야기했었지만 재미있었어요</div><div class="timestamp">오전 2:08</div></div>
+            <div class="bubble-wrapper"><div class="bubble">그래서 연락하는 것 같아요 잘생겨서두 있고... ㅎㅎ</div><div class="timestamp">오전 2:09</div></div>
+            <div class="bubble-wrapper"><div class="bubble">저도 오빠 궁금해요</div><div class="timestamp">오전 2:09</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper">
+                <div class="bubble"><div class="reply-box">연애는 세 번해 봤어요...</div>그래서 되게 당돌했구나, 난 직진인 사람 좋아해</div>
+                <div class="timestamp">오전 2:19</div>
+            </div>
+            <div class="bubble-wrapper">
+                <div class="bubble"><div class="reply-box">그래서 연락하는 것 같아요 잘생겨서두 있고...</div>나보다 잘생긴 사람 많은뎅</div>
+                <div class="timestamp">오전 2:19</div>
+            </div>
+            <div class="bubble-wrapper">
+                <div class="bubble"><div class="reply-box">저도 오빠 궁금해요</div>오떤게?</div>
+                <div class="timestamp">오전 2:20</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">오빠도 연애 몇 번했는지!!</div><div class="timestamp">오전 2:21</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row me step">
+        <div class="content-area">
+            <div class="bubble-wrapper"><div class="bubble">나 6번했어 연애는</div><div class="timestamp">오전 2:29</div></div>
+        </div>
+    </div>
+
+    <div class="msg-row other step">
+        <div class="profile-img">
+            <svg viewBox="0 0 100 100"><rect width="100%" height="100%" fill="#9b59b6"/><text x="50%" y="65%" font-size="50" text-anchor="middle" fill="white">튜브</text></svg>
+        </div>
+        <div class="content-area">
+            <div class="sender-name">멋쩍은 튜브</div>
+            <div class="bubble-wrapper"><div class="bubble">오빠는 저랑 왜 연락하고 싶어요 저번에 당돌했어서?</div><div class="timestamp">오전 2:37</div></div>
+        </div>
+    </div>
+</div>
+
+    <div class="controls">
+        <button class="btn-reset" id="btn-reset">다시 보기</button>
+        <button class="btn-next" id="btn-next">다음 메시지 보기</button>
+    </div>
+</div> <!-- app-wrapper 끝 -->
+
+<script>
+    const steps = document.querySelectorAll('.step');
+    let currentStep = 0;
+    const nextBtn = document.getElementById('btn-next');
+    const resetBtn = document.getElementById('btn-reset');
+
+    function showNext() {
+        if (currentStep < steps.length) {
+            const el = steps[currentStep];
+            el.style.display = (el.classList.contains('date-line')) ? 'flex' : 'flex';
+            currentStep++;
+            
+            // 화면 가장 하단으로 부드럽게 스크롤
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+
+            // 모든 메시지를 다 보여줬을 때 버튼 텍스트 변경
+            if (currentStep === steps.length) {
+                nextBtn.innerText = "대화 종료";
+                nextBtn.style.backgroundColor = "#ccc";
+            }
+        }
+    }
+
+    function resetChat() {
+        steps.forEach(s => s.style.display = 'none');
+        currentStep = 0;
+        nextBtn.innerText = "다음 메시지 보기";
+        nextBtn.style.backgroundColor = "#fee500";
+        window.scrollTo(0, 0);
+    }
+
+    nextBtn.addEventListener('click', showNext);
+    resetBtn.addEventListener('click', resetChat);
+
+    // 첫 메시지(날짜선)는 처음에 보여주기 원한다면 아래 주석 해제
+    // showNext(); 
+</script>
+
+</body>
+</html>

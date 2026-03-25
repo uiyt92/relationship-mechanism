@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연애의 매커니즘 - 프리미엄 코칭</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <style>
+        /* 0. DESIGN TOKENS (Ultra Premium Dark 2025) */
+        :root {
+          /* Font */
+          --font-kr: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+          --font-en: 'Montserrat', 'Pretendard', sans-serif;
+
+          /* Ultra Premium Red (Vibrant Neon Red/Crimson) */
+          --c-red: #ff2a5f;
+          --c-red-bright: #ff004c;
+          --c-red-bg: rgba(255, 0, 76, 0.05);
+          --c-red-border: rgba(255, 0, 76, 0.2);
+          --c-red-glow: rgba(255, 0, 76, 0.4);
+
+          /* Premium Gold */
+          --c-gold: #E5C800;
+          --c-gold-bright: #FEE500;
+          --c-gold-glow: rgba(254, 229, 0, 0.15);
+
+          /* Premium Green */
+          --c-green: #00e676;
+          --c-green-bg: rgba(0, 230, 118, 0.05);
+          --c-green-border: rgba(0, 230, 118, 0.2);
+
+          /* Neutral & Surfaces */
+          --c-bg-page: #000000;
+          --c-bg-slide: #141416;
+          --c-surface-1: rgba(24, 24, 27, 0.8);
+          --c-surface-2: rgba(39, 39, 42, 0.5);
+          
+          --c-border-subtle: rgba(255, 255, 255, 0.05);
+          --c-border-strong: rgba(255, 255, 255, 0.1);
+
+          /* Text Colors */
+          --t-heading: #FFFFFF;
+          --t-body: #E2E8F0;
+          --t-sub: #A1A1AA;
+          --t-muted: #71717A;
+        }
+
+        /* 0.1 TYPOGRAPHY SCALE */
+        .text-hero { font-size: 100px; font-weight: 900; line-height: 1.1; letter-spacing: -0.04em; }
+        .text-display { font-size: 64px; font-weight: 800; line-height: 1.25; letter-spacing: -0.03em; }
+        .text-h1 { font-size: 48px; font-weight: 800; line-height: 1.35; letter-spacing: -0.03em; }
+        .text-h2 { font-size: 36px; font-weight: 800; line-height: 1.4; letter-spacing: -0.02em; }
+        .text-h3 { font-size: 28px; font-weight: 700; line-height: 1.5; letter-spacing: -0.01em;}
+        .text-body-lg { font-size: 22px; font-weight: 400; line-height: 1.7; }
+        .text-body { font-size: 18px; font-weight: 400; line-height: 1.7; }
+        .font-en { font-family: var(--font-en) !important; }
+        .font-heavy { font-weight: 800 !important; }
+
+        /* Color Tokens */
+        .text-red { color: var(--c-red-bright) !important; text-shadow: 0 0 20px rgba(255, 0, 76, 0.2); }
+        .text-gold { color: var(--c-gold-bright) !important; text-shadow: 0 0 20px var(--c-gold-glow); }
+        .text-muted { color: var(--t-muted) !important; }
+        .text-sub { color: var(--t-sub) !important; }
+        .big-impact-text { font-size: 110px; font-weight: 900; font-family: var(--font-en); color: var(--t-heading); text-align: center; line-height: 1.1; letter-spacing: -0.04em; margin: 0; }
+
+        /* 1. RESET & BASE */
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--c-bg-page);
+            margin: 0;
+            min-height: 100vh;
+            font-family: var(--font-kr);
+            -webkit-font-smoothing: antialiased;
+            word-break: keep-all;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        p { margin: 0; margin-bottom: 16px; }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .delay-1 { animation-delay: 0.15s; opacity: 0; }
+        .delay-2 { animation-delay: 0.3s; opacity: 0; }
+        .delay-3 { animation-delay: 0.45s; opacity: 0; }
+
+        /* 2. SLIDE CONTAINER (Fullscreen Presentation) */
+        .slide-container {
+            background-color: var(--c-bg-slide);
+            display: none;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            padding: 60px 80px;
+            position: fixed;
+            top: 0; left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .slide-container.active {
+            display: flex;
+        }
+
+        /* 슬라이드 번호 표시 */
+        .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            color: var(--t-muted);
+            font-size: 14px;
+            font-family: var(--font-en);
+            z-index: 100;
+            letter-spacing: 0.1em;
+        }
+
+        /* 네비게이션 화살표 */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--t-sub);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+        }
+        .nav-arrow:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+        .nav-arrow.prev { left: 20px; }
+        .nav-arrow.next { right: 20px; }
+
+        /* 2.2 BACKGROUND EFFECTS (Subtle gradient flair) */
+        .slide-container::before {
+            content: ''; position: absolute; top: -40%; right: -20%; width: 1000px; height: 1000px;
+            background: radial-gradient(circle, var(--c-red-bg) 0%, rgba(0,0,0,0) 60%);
+            border-radius: 50%; z-index: 0; pointer-events: none; filter: blur(80px); mix-blend-mode: screen;
+        }
+        .slide-container > * { position: relative; z-index: 1; }
+
+        /* 3. TYPOGRAPHY */
+        h1, h2, h3 { color: var(--t-heading); font-weight: 800; margin: 0; letter-spacing: -0.03em; line-height: 1.3; }
+        p, li, td, th, div { color: var(--t-body); }
+        p, li { font-size: 18px;  line-height: 1.7; letter-spacing: -0.01em; font-weight: 400; }
+
+        .slide-title {
+            font-size: 36px; font-weight: 800; margin-bottom: 40px; text-align: left; width: 100%;
+            border-bottom: 1px solid var(--c-border-strong); padding-bottom: 20px; flex-shrink: 0;
+            display: flex; align-items: baseline; justify-content: space-between; color: var(--t-heading);
+        }
+
+        /* 4. LAYOUT COMPONENTS */
+        .content-area {
+            display: flex; flex-direction: column; flex-grow: 1; justify-content: center; width: 100%;
+        }
+
+        /* Asymmetric Grids */
+        .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; width: 100%; align-items: center; }
+        .two-column.asym-left { grid-template-columns: 1.3fr 0.7fr; } /* Text heavy left */
+        .two-column.asym-right { grid-template-columns: 0.8fr 1.2fr; } /* Image/visual heavy right */
+
+        /* Glassmorphism Tiles (Ultra Premium) */
+        .tiled-box {
+            background: var(--c-surface-1); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--c-border-strong);
+            padding: 40px 35px; text-align: left; 
+            border-radius: 20px; display: flex; flex-direction: column; justify-content: center;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); position: relative; overflow: hidden;
+        }
+        .tiled-box::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; /* Left border accent */
+            opacity: 1;
+        }
+        .tiled-box.accent-red { background: var(--c-red-bg); border-color: var(--c-red-border); }
+        .tiled-box.accent-red::after { background: linear-gradient(180deg, var(--c-red-bright), var(--c-red)); box-shadow: 0 0 20px var(--c-red-glow); }
+        
+        .tiled-box.accent-dark { background: var(--c-surface-1); }
+        .tiled-box.accent-dark::after { background: var(--c-gold-bright); }
+        
+        .tiled-box.accent-green { background: var(--c-green-bg); border-color: var(--c-green-border); }
+        .tiled-box.accent-green::after { background: var(--c-green); }
+
+        .tiled-content { display: flex; flex-direction: row; gap: 30px; width: 100%; justify-content: center; align-items: stretch; }
+        .tile {
+            flex: 1; 
+            background: var(--c-surface-1); backdrop-filter: blur(24px);
+            padding: 40px 30px; text-align: center;
+            border: 1px solid var(--c-border-strong); border-radius: 20px;
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5); position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 220px;
+        }
+        .tile .icon { font-size: 44px; color: var(--c-gold-bright); margin-bottom: 25px; text-shadow: 0 0 20px var(--c-gold-glow); }
+
+        /* Unified Image Filter */
+        .image-wrapper {
+            height: 420px; width: 100%; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.6); position: relative;
+        }
+        .image-wrapper img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            filter: contrast(1.05) saturate(1.0) brightness(1.0); /* Cinematic */
+        }
+        .image-wrapper::after { /* Cinematic overlay */
+            content: ''; position: absolute; top:0; left:0; right:0; bottom:0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%); pointer-events: none;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05); border-radius: 20px;
+        }
+
+        /* specific layouts */
+        .qa-layout { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; text-align: center; }
+        .section-title-layout { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; width: 100%; text-align: center; }
+        .section-title-layout hr { background-color: var(--c-red-bright); box-shadow: 0 0 10px var(--c-red-glow); border: none; height: 3px; margin: 40px auto; width: 80px; border-radius: 3px;}
+
+        /* Sleek Table (Modernized Card-like rows) */
+        .table-layout { width: 100%; border-collapse: separate; border-spacing: 0 16px; margin-top: -10px;}
+        .table-layout th { font-size: 18px; font-weight: 700;  padding: 0 30px 15px 30px; text-align: left; border-bottom: 1px solid var(--c-border-strong); letter-spacing: 0.05em; }
+        .table-layout td { font-size: 20px; padding: 30px 30px; background: var(--c-surface-1); border-top: 1px solid var(--c-border-subtle); border-bottom: 1px solid var(--c-border-subtle); backdrop-filter: blur(10px);  }
+        .table-layout td:first-child { border-left: 1px solid var(--c-border-subtle); border-radius: 16px 0 0 16px; font-weight: 800; color: var(--t-heading); }
+        .table-layout td:last-child { border-right: 1px solid var(--c-border-subtle); border-radius: 0 16px 16px 0; }
+        .table-layout tbody tr { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.4); transition: transform 0.2s ease; }
+        .table-layout tbody tr:hover { transform: translateY(-2px); border-color: var(--c-border-strong); }
+
+        /* Timeline (Upgraded) */
+        .timeline-layout { display: flex; justify-content: space-between; align-items: center; position: relative; width: 100%; min-height: 240px; }
+        .timeline-line { height: 4px; background: rgba(255, 255, 255, 0.15); position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); z-index: 0; border-radius: 4px; }
+        .timeline-item { width: 25%; position: relative; z-index: 1; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .timeline-item::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 18px; height: 18px; background: rgba(255, 255, 255, 0.6); border-radius: 50%; box-shadow: 0 0 0 10px var(--c-bg-slide); transition: all 0.3s ease; z-index: 2;}
+        .timeline-item.active::before { background: var(--c-red-bright); box-shadow: 0 0 0 12px rgba(255, 0, 76, 0.2); transform: translate(-50%, -50%) scale(1.4); }
+        .timeline-item .content-wrapper { position: absolute; width: 100%; left: 0; display: flex; flex-direction: column; align-items: center; }
+        .timeline-item:nth-child(odd) .content-wrapper { bottom: calc(50% + 40px); }
+        .timeline-item:nth-child(even) .content-wrapper { top: calc(50% + 40px); }
+        .timeline-item .content-wrapper h3 { display: inline-block; background: rgba(255,255,255,0.05); padding: 8px 22px; border-radius: 30px; font-size: 20px; font-weight: 800; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 15px; color: var(--t-heading); backdrop-filter: blur(10px); white-space: nowrap; }
+        .timeline-item.active .content-wrapper h3 { border-color: var(--c-red-bright); color: var(--c-red-bright); background: rgba(255, 0, 76, 0.1); box-shadow: 0 0 20px rgba(255, 0, 76, 0.2); }
+        .timeline-item .content-wrapper p { font-size: 18px; line-height: 1.5;  margin: 0; font-weight: 500; }
+        .timeline-item.active .content-wrapper p {  }
+
+        /* Highlight Numbers */
+        .highlight-numbers-layout { display: flex; flex-direction: row; align-items: center; width: 100%; background: var(--c-surface-1); border-radius: 20px; box-shadow: 0 30px 60px -15px rgba(0,0,0,0.6); border: 1px solid var(--c-border-strong); padding: 60px; backdrop-filter: blur(20px); }
+        .highlight-numbers-layout > div:first-child { flex: 0 0 30%; text-align: center; border-right: 1px solid var(--c-border-strong); padding-right: 40px; }
+        .highlight-numbers-layout > div:last-child { padding-left: 50px; flex: 1; }
+        .number { font-size: 120px; font-weight: 900; font-family: var(--font-en); color: var(--c-red-bright); line-height: 1; margin-bottom: 10px; letter-spacing: -0.05em; text-shadow: 0 0 30px var(--c-red-glow); }
+        .number-label { font-size: 20px; font-weight: 700;  letter-spacing: 0.1em; text-transform: uppercase; }
+
+        /* Bleed Image Layout (Fixed alignment for S4) */
+        .slide-container.bleed-image-layout { padding: 0; align-items: stretch; }
+        .slide-container.bleed-image-layout.active { display: grid; grid-template-columns: 1.1fr 0.9fr; }
+        .bleed-image-layout .content-container { padding: 90px 80px 40px 80px; display: flex; flex-direction: column; justify-content: flex-start; } /* Fix alignment */
+        .bleed-image-layout .image-container { width: 100%; height: 100%; position: relative; }
+        .bleed-image-layout .image-container::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to right, var(--c-bg-slide) 0%, rgba(9,9,11,0.5) 40%, transparent 80%); pointer-events: none;}
+        .bleed-image-layout img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.95) contrast(1.1); }
+
+        .contact-info { margin-top: 60px; font-size: 14px; font-family: var(--font-en);  letter-spacing: 0.2em; font-weight: 700; text-transform: uppercase; }
+        
+        /* Utility for Text boxes */
+        .quote-box {
+            background-color: var(--c-surface-2); padding: 30px 35px; font-size: 22px; font-weight: 800; border-radius: 16px; line-height: 1.6; border: 1px solid var(--c-border-strong); margin-bottom: 25px;
+        }
+        .quote-box.red { color: var(--c-red-bright); background-color: var(--c-red-bg); border-color: var(--c-red-border); }
+        .quote-box.green { color: var(--c-green-text); background-color: var(--c-green-bg); border-color: var(--c-green-border); }
+    </style>
+</head>
+<body>
+
+<div class="slide-container" id="slide1" style="padding: 0;">
+    <video autoplay muted loop playsinline src="Video_moving_for_202603251726.mp4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;"></video>
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)); z-index: 1;"></div>
+    <div class="qa-layout animate-fade-up" style="position: relative; z-index: 2;">
+        <h1 class="text-hero" style="margin-bottom: 10px; color: var(--t-heading);">관계의 메커니즘</h1>
+        <p class="text-gold font-heavy" style="font-size: 36px; margin-bottom: 40px; letter-spacing: 0.15em;">: 유혹의 원리</p>
+        <p class="text-muted font-heavy font-en" style="font-size: 20px; letter-spacing: 0.2em; text-transform: uppercase;">당신이 매번 실패하는 진짜 이유</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2">
+    <div class="qa-layout animate-fade-up">
+        <h2 class="text-display" style="line-height: 1.4;">여자를 만나면 항상<br><span class="text-red">"좋은 사람"</span>으로 끝나는 분?</h2>
+        <p class="delay-1" style="margin-top: 50px; font-size: 24px; font-weight: 500;"><i class="fa-solid fa-hand text-gold" style="margin-right: 15px;"></i>손 한번 들어보세요.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title animate-fade-up">패러다임의 전환</h2>
+    <div class="content-area animate-fade-up delay-1">
+        <div class="two-column">
+            <div class="tiled-box accent-dark" style="text-align: center; padding: 60px 40px;">
+                <h3 style=" font-size: 24px; font-weight: 600;">한 번이면 운</h3>
+                <p class="font-heavy" style="font-size: 36px; color: var(--t-heading); margin-top: 20px;">어쩌다 생긴 일</p>
+            </div>
+            <div class="tiled-box accent-red" style="text-align: center; padding: 60px 40px; background-color: var(--c-red-bg); border-color: rgba(225, 29, 72, 0.1);">
+                <h3 class="text-red" style="font-size: 24px; font-weight: 600;">반복되면 구조</h3>
+                <p class="font-heavy" style="font-size: 36px; color: var(--t-heading); margin-top: 20px;">반드시 바꿔야 하는 패턴</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container bleed-image-layout" id="slide4">
+    <div class="content-container animate-fade-up">
+        <h2 class="slide-title" style="padding-left: 0; border-bottom: none; margin-bottom: 50px;">방향성의 오류</h2>
+        <div style="text-align: left;">
+            <h3 style="font-size: 40px; margin-bottom: 40px; line-height: 1.4;">열심히 한 게 문제가 아니라<br><span class="text-red">방향이 틀렸습니다.</span></h3>
+            <p style="font-size: 22px; ">대부분 "어떻게 하면 더 잘할 수 있을까"를 고민합니다.</p>
+            <p style="font-size: 22px; ">이제 질문을 바꿔야 합니다. <strong>"왜 매번 같은 결과가 나올까?"</strong></p>
+            <div style="margin-top: 80px; padding-top: 30px; border-top: 1px solid var(--c-border-subtle);">
+                <p style="font-weight: 800; color: var(--t-heading); font-size: 24px;">이건 사람 문제가 아니라, 구조 문제입니다.</p>
+            </div>
+        </div>
+    </div>
+    <div class="image-container animate-fade-up delay-1">
+        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Direction">
+    </div>
+</div>
+
+<div class="slide-container" id="slide5">
+    <div class="content-area two-column asym-left animate-fade-up">
+        <div>
+            <h2 class="text-h1" style="line-height: 1.4; margin-bottom: 50px;">8년의 헌신,<br>그리고 철저한 <span class="text-red">배신</span></h2>
+            <ul style="list-style: none; padding: 0; color: var(--t-body);">
+                <li style="margin-bottom: 25px; font-size: 22px; display: flex; align-items: flex-start;"><i class="fa-solid fa-check text-red" style="margin-top: 6px; margin-right: 20px;"></i>8년을 만난 여자친구와의 결혼 준비</li>
+                <li style="margin-bottom: 25px; font-size: 22px; display: flex; align-items: flex-start;"><i class="fa-solid fa-check text-red" style="margin-top: 6px; margin-right: 20px;"></i>내 돈으로 100% 구한 전셋집과 샤넬백</li>
+                <li style="margin-bottom: 25px; font-size: 22px; display: flex; align-items: flex-start;"><i class="fa-solid fa-check text-red" style="margin-top: 6px; margin-right: 20px;"></i>할 수 있는 모든 것을 바친 결과 = <strong class="text-red" style="margin-left: 8px;">바람</strong></li>
+            </ul>
+        </div>
+        <div class="tiled-box accent-red animate-fade-up delay-1" style="background: var(--c-red-bg); border: 1px solid rgba(225, 29, 72, 0.15); text-align: left;">
+            <p style="font-size: 28px; color: var(--t-heading); font-weight: 800; line-height: 1.6; margin: 0;">"여자들은 다 해주는 남자가<br>좋다고 하면서, 막상 다 해주면<br>왜 떠나려고 할까?"</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide6">
+    <div class="section-title-layout animate-fade-up">
+        <p style="font-size: 26px; color: var(--t-muted); margin-bottom: 30px; letter-spacing: 0.05em;">여자와의 관계란 도대체 무엇일까??</p>
+        <h2 class="text-display" style="color: var(--t-heading);">왜 <span class="text-red">다 해주면</span> 떠날까?</h2>
+    </div>
+</div>
+
+<div class="slide-container" id="slide7">
+    <div class="qa-layout animate-fade-up">
+        <h1 class="big-impact-text" style="font-size: 85px; line-height: 1.4; margin-bottom: 40px; word-break: keep-all;">
+            모든 것에는 <span class="text-red">원리</span>가 있다.
+        </h1>
+        <p class="text-gold font-heavy delay-1" style="font-size: 40px; letter-spacing: 0.15em; text-shadow: 0 0 40px rgba(254,229,0,0.3); margin: 0;">
+            관계의 메커니즘 : 유혹의 원리
+        </p>
+    </div>
+</div>
+
+<!-- ━━━ 목차 (Table of Contents) ━━━ -->
+<div class="slide-container" id="slide-toc">
+    <h2 class="slide-title animate-fade-up">핵심 과정 안내</h2>
+    <div class="content-area animate-fade-up delay-1" style="justify-content: flex-start; padding-top: 40px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%;">
+            <!-- Left Column -->
+            <div style="display: flex; flex-direction: column; gap: 45px;">
+                <div style="display: flex; gap: 30px; align-items: flex-start;">
+                    <div style="font-size: 44px; font-weight: 900; color: var(--c-red); line-height: 1;">01</div>
+                    <div>
+                        <h3 style="font-size: 28px; color: var(--t-heading); margin-bottom: 12px;">사고의 전환</h3>
+                        <p style="font-size: 18px; color: var(--t-body); margin: 0;">패러다임을 바꾸고 실패의 원인 바로잡기</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 30px; align-items: flex-start;">
+                    <div style="font-size: 44px; font-weight: 900; color: var(--c-gold); line-height: 1;">02</div>
+                    <div>
+                        <h3 style="font-size: 28px; color: var(--t-heading); margin-bottom: 12px;">헌신의 배신</h3>
+                        <p style="font-size: 18px; color: var(--t-body); margin: 0;">다 해주는 사람이 결국 떠나게 되는 진짜 이유</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 30px; align-items: flex-start;">
+                    <div style="font-size: 44px; font-weight: 900; color: var(--t-muted); opacity: 0.6; line-height: 1;">03</div>
+                    <div>
+                        <h3 style="font-size: 28px; color: var(--t-heading); margin-bottom: 12px;">사업에서 배우는 관계</h3>
+                        <p style="font-size: 18px; color: var(--t-body); margin: 0;">호기심, 신뢰감, 가치로 이어지는 순환의 흐름</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column -->
+            <div style="display: flex; flex-direction: column; gap: 45px;">
+                <div style="display: flex; gap: 30px; align-items: flex-start;">
+                    <div style="font-size: 44px; font-weight: 900; color: var(--t-muted); opacity: 0.6; line-height: 1;">04</div>
+                    <div>
+                        <h3 style="font-size: 28px; color: var(--t-heading); margin-bottom: 12px;">가치 전쟁과 주도권</h3>
+                        <p style="font-size: 18px; color: var(--t-body); margin: 0;">본능이 원하는 '이끎'과 '서열' 역학 구도</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 30px; align-items: flex-start;">
+                    <div style="font-size: 44px; font-weight: 900; color: var(--t-muted); opacity: 0.6; line-height: 1;">05</div>
+                    <div>
+                        <h3 style="font-size: 28px; color: var(--t-heading); margin-bottom: 12px;">실전 대화 기술</h3>
+                        <p style="font-size: 18px; color: var(--t-body); margin: 0;">실시간 대화 분석 및 위기를 매력으로 바꾸기</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 30px; align-items: flex-start;">
+                    <div style="font-size: 44px; font-weight: 900; color: var(--t-muted); opacity: 0.6; line-height: 1;">06</div>
+                    <div>
+                        <h3 style="font-size: 28px; color: var(--t-heading); margin-bottom: 12px;">체득과 변화</h3>
+                        <p style="font-size: 18px; color: var(--t-body); margin: 0;">새로운 행동이 무의식에 자리 잡는 근본적 방법</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide8">
+    <div class="qa-layout animate-fade-up">
+        <h2 class="big-impact-text">마케팅?</h2>
+    </div>
+</div>
+
+<div class="slide-container" id="slide9">
+    <div class="qa-layout animate-fade-up">
+        <h2 class="big-impact-text text-red">광고?</h2>
+    </div>
+</div>
+
+<div class="slide-container" id="slide10">
+    <div class="slide-title animate-fade-up">
+        <h2 style="font-size: 34px;">사업 = 연애</h2>
+        <span style="font-size: 20px;  font-weight: 600;">다 똑같은 매커니즘이 존재합니다.</span>
+    </div>
+    <div class="content-area two-column asym-right animate-fade-up delay-1">
+        <div style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="background-color: var(--c-surface-2); border-left: 6px solid var(--t-heading); padding: 35px 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.03);">
+                <h3 style="font-size: 22px;  margin-bottom: 15px;"><i class="fa-solid fa-chart-line text-red" style="margin-right: 12px;"></i>마케팅의 본질</h3>
+                <p class="font-heavy" style="font-size: 24px; color: var(--t-heading); margin: 0;">모으고, 설득하는 것</p>
+            </div>
+            <div style="background-color: var(--c-surface-2); border-left: 6px solid var(--c-red); padding: 35px 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(225, 29, 72, 0.05);">
+                <h3 class="text-red" style="font-size: 22px; margin-bottom: 15px;"><i class="fa-solid fa-eye" style="margin-right: 12px;"></i>광고의 본질</h3>
+                <p class="font-heavy" style="font-size: 24px; color: var(--t-heading); margin: 0;">일단 <span class="text-red" style="font-size: 26px;">'보게 만드는 것'</span></p>
+            </div>
+        </div>
+        <div class="image-wrapper">
+            <img src="./jang_wonyoung.jpg" style="width: 100%; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); border: 1px solid var(--c-border-strong); filter: brightness(0.95);" alt="장원영 광고">
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide11">
+    <h2 class="slide-title animate-fade-up">구매 전환의 3단계</h2>
+    <div class="content-area tiled-content animate-fade-up delay-1">
+        <div class="tile">
+            <div class="icon"><i class="fa-solid fa-arrow-pointer"></i></div>
+            <h3 style="font-size: 28px; margin-bottom: 20px;">호기심</h3>
+            <p class="text-gold font-heavy" style="font-size: 20px; margin: 0; letter-spacing: 0.1em;">(클릭)</p>
+        </div>
+        <div class="tile">
+            <div class="icon"><i class="fa-solid fa-file-lines"></i></div>
+            <h3 style="font-size: 28px; margin-bottom: 20px;">신뢰</h3>
+            <p class="text-gold font-heavy" style="font-size: 20px; margin: 0; letter-spacing: 0.1em;">(상세페이지)</p>
+        </div>
+        <div class="tile">
+            <div class="icon"><i class="fa-solid fa-cart-shopping"></i></div>
+            <h3 style="font-size: 28px; margin-bottom: 20px;">가치</h3>
+            <p class="text-gold font-heavy" style="font-size: 20px; margin: 0; letter-spacing: 0.1em;">(구매)</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide12">
+    <div class="section-title-layout animate-fade-up">
+        <h2 class="text-display" style="margin-bottom: 30px;">구매자와 판매자의 구조</h2>
+        <hr>
+        <p style="font-size: 30px; color: var(--t-muted); font-weight: 500; letter-spacing: 0.05em;">주도권은 누구에게 있는가?</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide13">
+    <div class="qa-layout animate-fade-up">
+        <p class="text-gold font-heavy" style="font-size: 24px; margin-bottom: 40px; letter-spacing: 0.1em;">질문 하나 드리겠습니다.</p>
+        <h2 class="text-display" style="line-height: 1.4;">다이어트 약의 <span class="text-red">핵심 가치</span>는<br>무엇일까요?</h2>
+    </div>
+</div>
+
+<div class="slide-container" id="slide13-2">
+    <div class="qa-layout animate-fade-up">
+        <h2 class="text-display" style="line-height: 1.4;">살을 빼고 싶다는<br><span class="text-red">욕구!</span></h2>
+    </div>
+</div>
+
+<div class="slide-container" id="slide14">
+    <div class="content-area animate-fade-up">
+        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 80px; width: 100%;">
+            <div class="tiled-box accent-dark" style="border-radius: 60px; padding: 25px 50px; text-align: center;"><h3 style="margin:0; font-size: 32px;">호기심</h3></div>
+            <i class="fa-solid fa-arrow-right text-red" style="font-size: 32px;"></i>
+            <div class="tiled-box accent-dark" style="border-radius: 60px; padding: 25px 50px; text-align: center;"><h3 style="margin:0; font-size: 32px;">신뢰</h3></div>
+            <i class="fa-solid fa-arrow-right text-red" style="font-size: 32px;"></i>
+            <div class="tiled-box accent-dark" style="border-radius: 60px; padding: 25px 50px; text-align: center;"><h3 style="margin:0; font-size: 32px;">가치</h3></div>
+        </div>
+        <p style="font-size: 40px; font-weight: 900; color: var(--t-heading); text-align: center;">이게 있어야 사람은 <span class="text-red">구매</span>를 합니다.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide15">
+    <div class="content-area animate-fade-up">
+        <h2 class="text-display" style="margin-bottom: 80px; text-align: center;">연애도 <span class="text-red">똑같다.</span></h2>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 80px; width: 100%;">
+            <div class="tiled-box accent-red" style="border-radius: 16px; padding: 30px 45px; background: var(--c-red-bg); text-align: center; border-color: rgba(225, 29, 72, 0.2);"><h3 style="margin:0; font-size: 32px; color: #fff;">호기심</h3></div>
+            <i class="fa-solid fa-arrow-right" style="font-size: 32px; "></i>
+            <div class="tiled-box accent-red" style="border-radius: 16px; padding: 30px 45px; background: var(--c-red-bg); text-align: center; border-color: rgba(225, 29, 72, 0.2);"><h3 style="margin:0; font-size: 32px; color: #fff;">신뢰감</h3></div>
+            <i class="fa-solid fa-arrow-right" style="font-size: 32px; "></i>
+            <div class="tiled-box accent-red" style="border-radius: 16px; padding: 30px 45px; background: var(--c-red-bg); text-align: center; border-color: rgba(225, 29, 72, 0.2);"><h3 style="margin:0; font-size: 32px; color: #fff;">가치</h3></div>
+        </div>
+        <p class="text-gold font-heavy" style="font-size: 30px; margin: 0; text-align: center; letter-spacing: 0.05em;">반드시 이 흐름을 만들어야 합니다.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide22">
+    <h2 class="slide-title animate-fade-up">관계의 매커니즘 4단계</h2>
+    <div class="content-area animate-fade-up delay-1">
+        <p style="font-size: 26px; font-weight: 800; color: var(--c-red); margin-bottom: 80px; text-align: center;">보통 3단계에서 가장 많이 거절당합니다. 왜 그럴까요?</p>
+
+        <div class="timeline-layout">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3 style="font-size: 24px; margin-bottom: 15px; ">1. 해소</h3>
+                    <p style="font-size: 18px; ">기본적 경계심 허물기</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3 style="font-size: 24px; margin-bottom: 15px; ">2. 정보성 질문</h3>
+                    <p style="font-size: 18px; ">상대적 가치 측정</p>
+                </div>
+            </div>
+            <div class="timeline-item active">
+                <div class="content-wrapper">
+                    <h3 class="text-red" style="font-size: 28px; margin-bottom: 15px; font-weight: 900;">3. 테스트</h3>
+                    <p class="font-heavy" style="color: var(--t-heading); font-size: 20px;">알파/베타 프레임 확인</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3 style="font-size: 24px; margin-bottom: 15px; ">4. 관계 결정</h3>
+                    <p style="font-size: 18px; ">최종 판단 및 몰입</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide16">
+    <div class="qa-layout animate-fade-up">
+        <h2 class="big-impact-text">연애는 <span class="text-red">가치전쟁</span>이다.</h2>
+    </div>
+</div>
+
+<div class="slide-container" id="slide17">
+    <div class="content-area two-column animate-fade-up">
+        <div class="tiled-box accent-dark" style="border-left: 6px solid var(--c-border-subtle); background: var(--c-surface-1); padding: 60px 50px;">
+            <p style="font-size: 22px; color: var(--t-muted); margin-bottom: 40px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">여자의 본능</p>
+            <h2 style="font-size: 46px; line-height: 1.4;">이 사람이 나를<br><span class="text-red">리드</span>할 수 있냐</h2>
+        </div>
+        <div class="tiled-box accent-red" style="border-left: 6px solid var(--c-red); background: var(--c-red-bg); padding: 60px 50px;">
+            <p style="font-size: 22px; color: var(--c-red); margin-bottom: 40px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">서열의 척도</p>
+            <h2 style="font-size: 46px; line-height: 1.4;"><span class="text-red">위</span>인가<br>아래인가</h2>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide18">
+    <h2 class="slide-title animate-fade-up">여러분은 어떤 위치에 있습니까?</h2>
+    <div class="content-area two-column animate-fade-up delay-1">
+        <div class="tiled-box accent-red" style="align-items: flex-start;">
+            <i class="fa-solid fa-xmark" style="font-size: 40px; color: var(--c-red); margin-bottom: 30px;"></i>
+            <h3 style="font-size: 30px; margin-bottom: 15px;">증명하려는 사람</h3>
+            <p class="font-heavy" style="color: var(--c-red); margin-bottom: 25px; font-size: 20px;">수동적 패턴</p>
+            <p style="font-size: 22px; color: var(--t-body); line-height: 1.8;">무조건 맞추고, 눈치 보고, 사과한다.</p>
+            <div style="margin-top: 30px; padding-top: 25px; border-top: 1px dashed rgba(255,255,255,0.15); width: 100%;">
+                <p style="font-weight: 800; color: var(--t-heading); margin: 0; font-size: 20px;">결과: <span class="text-red">"가치 부족"</span> 신호 발산</p>
+            </div>
+        </div>
+        <div class="tiled-box accent-green" style="align-items: flex-start; background-color: rgba(0, 230, 118, 0.06);">
+            <i class="fa-solid fa-check" style="font-size: 40px; color: var(--c-green); margin-bottom: 30px;"></i>
+            <h3 style="font-size: 30px; margin-bottom: 15px;">가치 있는 사람</h3>
+            <p class="font-heavy" style="color: var(--c-green); margin-bottom: 25px; font-size: 20px;">주도적 패턴</p>
+            <p style="font-size: 22px; color: var(--t-body); line-height: 1.8;">애쓰지 않고 고유의 기준을 유지한다.</p>
+            <div style="margin-top: 30px; padding-top: 25px; border-top: 1px dashed rgba(255,255,255,0.15); width: 100%;">
+                <p style="font-weight: 800; color: var(--t-heading); margin: 0; font-size: 20px;">결과: <span style="color: var(--c-green);">자연스러운 끌림 유지</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide19">
+    <h2 class="slide-title animate-fade-up">상황별 수렴과 대응 패턴</h2>
+    <div class="content-area animate-fade-up delay-1">
+        <table class="table-layout">
+            <thead>
+                <tr>
+                    <th>관계의 텐션(상황)</th>
+                    <th style="color: var(--c-red);">가치 하락 대응 (증명)</th>
+                    <th style="color: var(--c-green);">가치 상승 대응 (유지)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>호감을 줄 때</td>
+                    <td>과하게 기뻐하며 주도권을 넘김</td>
+                    <td style="font-weight: 800; color: var(--t-heading);">여유 있게 수용하며 선을 지킴</td>
+                </tr>
+                <tr>
+                    <td>애매하게 나올 때</td>
+                    <td>눈치를 보며 먼저 다가가 매달림</td>
+                    <td style="font-weight: 800; color: var(--t-heading);">조급해하지 않고 내 일상을 유지함</td>
+                </tr>
+                <tr>
+                    <td>관계를 시험할 때</td>
+                    <td>당황하여 즉각 변명하고 사과함</td>
+                    <td style="font-weight: 800; color: var(--t-heading);">동요하지 않고 일관된 태도를 보임</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="slide-container" id="slide20">
+    <h2 class="slide-title animate-fade-up">실전 시뮬레이션</h2>
+    <div class="content-area two-column asym-left animate-fade-up delay-1">
+        <div style="display: flex; flex-direction: column; justify-content: center; padding-right: 40px;">
+            <h3 class="text-gold" style="font-size: 38px; margin-bottom: 25px; line-height: 1.4;">"친구 번호 따려고 했잖아요~"</h3>
+            <hr style="border-color: rgba(255,255,255,0.05); margin: 40px 0; width: 100%;">
+            <p style="font-size: 26px; color: var(--c-red-bright); font-weight: 800; line-height: 1.5;">여러분이라면 이 상황에서 폰을 들고 뭐라고 치시겠습니까?</p>
+            <p style="font-size: 18px; color: var(--t-muted); font-style: italic; margin-top: 20px;">(딱 3초 드리겠습니다. 생각해보세요.)</p>
+        </div>
+        <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Man waiting for reply">
+        </div>
+    </div>
+</div>
+
+<!-- ━━━ 📱 카톡 라이브 세션 ━━━ -->
+<div class="slide-container" id="slide-katalk">
+    <div class="content-area two-column asym-right animate-fade-up" style="gap: 50px;">
+        <div style="display: flex; flex-direction: column; justify-content: center; padding-right: 20px;">
+            <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+                <div style="width: 50px; height: 50px; border-radius: 14px; background: linear-gradient(135deg, #FEE500, #E5C800); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(254, 229, 0, 0.2);">
+                    <i class="fa-solid fa-comment" style="font-size: 24px; color: #3C1E1E;"></i>
+                </div>
+                <h2 class="text-h1" style="margin: 0; font-size: 36px;">실전 카톡 분석</h2>
+            </div>
+            <p style="font-size: 24px; color: var(--t-body); font-weight: 500; line-height: 1.6; margin-bottom: 40px;">답 알려드리기 전에,<br>제가 <strong style="color: var(--t-heading);">실제로 어떻게 하는지</strong><br>직접 보여드리겠습니다.</p>
+            
+            <ul style="list-style: none; padding: 0; color: var(--t-body);">
+                <li style="margin-bottom: 25px; font-size: 20px; display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);"><i class="fa-solid fa-mobile-screen text-gold" style="width: 35px; font-size: 22px;"></i>실제 카톡 대화 공개</li>
+                <li style="margin-bottom: 25px; font-size: 20px; display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);"><i class="fa-solid fa-magnifying-glass-chart text-gold" style="width: 35px; font-size: 22px;"></i>실시간 해설 & 피드백</li>
+                <li style="font-size: 20px; display: flex; align-items: center; background: rgba(255,255,255,0.03); padding: 15px 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);"><i class="fa-solid fa-arrows-spin text-gold" style="width: 35px; font-size: 22px;"></i>대응 후 반응 변화 체크</li>
+            </ul>
+        </div>
+        
+        <div class="image-wrapper" style="width: 100%; height: 600px; border-radius: 20px; overflow: hidden; border: 1px solid var(--c-border-strong); box-shadow: 0 30px 60px rgba(0,0,0,0.6); background-color: var(--c-surface-1);">
+            <iframe src="카톡창.html" width="100%" height="600" style="border: none; border-radius: 20px; display: block;"></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- ━━━ 📱 카톡 세션 후 브릿지 화법 ━━━ -->
+<div class="slide-container" id="slide-katalk-bridge">
+    <div class="qa-layout animate-fade-up">
+        <p style="font-size: 28px; color: var(--t-body); font-weight: 500; margin-bottom: 40px;">지금 제 카톡 보면서</p>
+        <h2 class="text-h1" style="line-height: 1.5; margin-bottom: 50px;"><span class="text-gold">"아, 이렇게 하면 되는구나"</span><br>하셨죠?</h2>
+        <div style="border-top: 1px solid var(--c-border-strong); padding-top: 40px; width: 80%; text-align: center;">
+            <p style="font-size: 30px; color: var(--c-red-bright); font-weight: 800; line-height: 1.6;">내일 그 여자한테 카톡 올 때,<br>방금 본 대로 <span style="text-decoration: underline; text-underline-offset: 8px;">칠 수 있습니까?</span></p>
+            <p style="font-size: 20px; color: var(--t-muted); margin-top: 30px; font-style: italic;">(3초 드릴게요. 솔직하게.)</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide21">
+    <h2 class="slide-title animate-fade-up">단 하나의 대응이 결과를 가릅니다</h2>
+    <div class="content-area two-column animate-fade-up delay-1">
+        <div class="tiled-box accent-red" style="align-items: flex-start;">
+            <h3 style="color: var(--c-red); font-size: 28px; margin-bottom: 25px;">잘못된 대응</h3>
+            <div class="quote-box red">
+                "응 요즘 좀 바빠ㅠㅠ<br>미안 다음에 꼭 보자!"
+            </div>
+            <p style="font-weight: 800; color: var(--t-heading); margin: 0; font-size: 18px; margin-top: 10px;">변명 + 사과 + 약속 = 가치 하락 3종 세트</p>
+        </div>
+        <div class="tiled-box accent-green" style="align-items: flex-start; background-color: var(--c-surface-2);">
+            <h3 style="color: var(--c-green); font-size: 28px; margin-bottom: 25px;">올바른 대응</h3>
+            <div class="quote-box green">
+                "응 근데<br>너 생각은 나더라."
+            </div>
+            <p style="font-weight: 800; color: var(--t-heading); margin: 0; font-size: 18px; margin-top: 10px;">짧고 여유 있게 무의식적 감정을 건드림</p>
+        </div>
+    </div>
+</div>
+
+<!-- S23-S24 삭제 (코칭 커리큘럼으로 이동 — 강의에서 너무 많이 주지 않기) -->
+
+<!-- S25: 선언 먼저 → 영상으로 증명 -->
+<div class="slide-container" id="slide25">
+    <div class="section-title-layout animate-fade-up">
+        <h2 class="text-display" style="margin-bottom: 20px;">호감은 <span style="text-decoration: line-through;  font-weight: 500;">'편안함'</span>이 아니라</h2>
+        <h2 class="text-hero text-red" style="margin-top: 10px;">'긴장'이다.</h2>
+    </div>
+</div>
+
+<!-- ━━━ 🎬 영상 세션 1 ━━━ -->
+<div class="slide-container" id="slide-video1">
+    <div class="qa-layout animate-fade-up">
+        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--c-red), var(--c-red-bright)); display: flex; align-items: center; justify-content: center;">
+                <i class="fa-solid fa-play" style="font-size: 20px; color: #fff; margin-left: 3px;"></i>
+            </div>
+            <h2 class="text-h2" style="margin: 0;">영상으로 직접 확인 <span class="text-muted" style="font-size: 20px; font-weight: 400;">1/3</span></h2>
+        </div>
+        <a href="https://youtu.be/3m70mobjdRE" target="_blank" class="yt-thumb" style="width: 85%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.6); display: block; position: relative; cursor: pointer; text-decoration: none;">
+            <img src="https://img.youtube.com/vi/3m70mobjdRE/maxresdefault.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); transition: background 0.2s;">
+                <div style="width: 80px; height: 56px; background: rgba(255,0,0,0.9); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-play" style="font-size: 28px; color: #fff; margin-left: 4px;"></i>
+                </div>
+            </div>
+        </a>
+        <p style="margin-top: 20px; font-size: 15px; color: var(--t-muted);">클릭하면 YouTube에서 재생됩니다</p>
+    </div>
+</div>
+
+<!-- ━━━ 🎬 영상 세션 2 ━━━ -->
+<div class="slide-container" id="slide-video2">
+    <div class="qa-layout animate-fade-up">
+        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--c-red), var(--c-red-bright)); display: flex; align-items: center; justify-content: center;">
+                <i class="fa-solid fa-play" style="font-size: 20px; color: #fff; margin-left: 3px;"></i>
+            </div>
+            <h2 class="text-h2" style="margin: 0;">영상으로 직접 확인 <span class="text-muted" style="font-size: 20px; font-weight: 400;">2/3</span></h2>
+        </div>
+        <a href="https://youtu.be/pw1CWTtvIo4?t=1" target="_blank" class="yt-thumb" style="width: 85%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.6); display: block; position: relative; cursor: pointer; text-decoration: none;">
+            <img src="https://img.youtube.com/vi/pw1CWTtvIo4/maxresdefault.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); transition: background 0.2s;">
+                <div style="width: 80px; height: 56px; background: rgba(255,0,0,0.9); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-play" style="font-size: 28px; color: #fff; margin-left: 4px;"></i>
+                </div>
+            </div>
+        </a>
+        <p style="margin-top: 20px; font-size: 15px; color: var(--t-muted);">클릭하면 YouTube에서 재생됩니다</p>
+    </div>
+</div>
+
+<!-- ━━━ 🎬 영상 세션 3 ━━━ -->
+<div class="slide-container" id="slide-video3">
+    <div class="qa-layout animate-fade-up">
+        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 30px;">
+            <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, var(--c-red), var(--c-red-bright)); display: flex; align-items: center; justify-content: center;">
+                <i class="fa-solid fa-play" style="font-size: 20px; color: #fff; margin-left: 3px;"></i>
+            </div>
+            <h2 class="text-h2" style="margin: 0;">영상으로 직접 확인 <span class="text-muted" style="font-size: 20px; font-weight: 400;">3/3</span></h2>
+        </div>
+        <a href="https://youtu.be/x2H4UzqrjY0?t=73" target="_blank" class="yt-thumb" style="width: 85%; aspect-ratio: 16/9; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.6); display: block; position: relative; cursor: pointer; text-decoration: none;">
+            <img src="https://img.youtube.com/vi/x2H4UzqrjY0/maxresdefault.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); transition: background 0.2s;">
+                <div style="width: 80px; height: 56px; background: rgba(255,0,0,0.9); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-play" style="font-size: 28px; color: #fff; margin-left: 4px;"></i>
+                </div>
+            </div>
+        </a>
+        <p style="margin-top: 20px; font-size: 15px; color: var(--t-muted);">클릭하면 YouTube에서 재생됩니다</p>
+    </div>
+</div>
+
+<!-- ━━━ 🎬 영상 세션 후 브릿지 화법 ━━━ -->
+<div class="slide-container" id="slide-video-bridge">
+    <div class="qa-layout animate-fade-up">
+        <p style="font-size: 26px; color: var(--t-body); font-weight: 500; margin-bottom: 30px;">방금 영상에서 보셨듯이</p>
+        <h2 class="text-h1" style="line-height: 1.5; margin-bottom: 40px;"><span class="text-red">다 해주는 남자</span>는<br>100% 떠나게 됩니다.</h2>
+        <div style="border-top: 1px solid var(--c-border-strong); padding-top: 40px; width: 80%; text-align: center;">
+            <p style="font-size: 24px; color: var(--t-body); line-height: 1.7; margin-bottom: 30px;">여러분 대부분이 지금 <strong style="color: var(--t-heading);">'다 해주는 남자'</strong> 포지션입니다.<br>오늘 이걸 깨달은 것만으로도 만원의 가치는 충분합니다.</p>
+            <p style="font-size: 30px; color: var(--c-gold-bright); font-weight: 800; margin: 0;">문제는... <span style="color: var(--c-red-bright);">'깨달음' 다음</span>입니다.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container bleed-image-layout" id="slide26">
+    <div class="content-container animate-fade-up">
+        <h2 class="slide-title" style="padding-left: 0; border-bottom: none; margin-bottom: 50px;">프레임 테스트 돌파</h2>
+        <div style="text-align: left;">
+            <h3 class="text-gold" style="font-size: 36px; margin-bottom: 50px; line-height: 1.4;">"오빠 재미없다~ 다른 데 가자."</h3>
+
+            <p style="margin-bottom: 50px; font-size: 22px; color: var(--t-body);">
+                잘못된 대응: "아 미안, 어디 갈까? 뭐 먹고 싶어?"<br>
+                <span style="font-size: 18px; color: var(--c-red-bright); font-weight: 700; margin-top: 10px; display: inline-block;">(사과 + 복종 = 매력 제로)</span>
+            </p>
+
+            <p style="color: var(--t-heading); font-size: 28px; font-weight: 800; margin-bottom: 15px; border-left: 4px solid var(--c-green); padding-left: 20px;">
+                올바른 대응: "내가 재밌는 사람이면, 여기가 왜 중요해."
+            </p>
+            <p style="padding-left: 24px;"><span style="font-size: 18px; color: var(--c-green); font-weight: 700;">(기준 유지 = 프레임 역전 및 끌림 폭발)</span></p>
+        </div>
+    </div>
+    <div class="image-container animate-fade-up delay-1">
+        <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Couple Tension Silhouette">
+    </div>
+</div>
+
+<div class="slide-container" id="slide27">
+    <h2 class="slide-title animate-fade-up">이 자리에 앉아있던 사람들의 변화</h2>
+    <div class="content-area animate-fade-up delay-1" style="gap: 30px;">
+        <div style="display: flex; gap: 30px; width: 100%;">
+            <div class="tiled-box accent-red" style="flex: 1; padding: 35px 30px;">
+                <p style="font-size: 16px;  font-weight: 700; margin-bottom: 15px; letter-spacing: 0.05em;">CASE 1</p>
+                <h3 style="font-size: 24px; margin-bottom: 15px;">A씨 (32세) · 8년 무연애</h3>
+                <p class="text-red font-heavy" style="font-size: 18px; margin-bottom: 10px;">조건반사적 사과 → 여유로운 수용</p>
+                <p style="font-size: 16px;  margin: 0;">코칭 3개월 후 첫 연애 시작. 현재 6개월째 안정적 관계 주도 중.</p>
+            </div>
+            <div class="tiled-box accent-red" style="flex: 1; padding: 35px 30px;">
+                <p style="font-size: 16px;  font-weight: 700; margin-bottom: 15px; letter-spacing: 0.05em;">CASE 2</p>
+                <h3 style="font-size: 24px; margin-bottom: 15px;">B씨 (28세) · 소개팅 전패</h3>
+                <p class="text-red font-heavy" style="font-size: 18px; margin-bottom: 10px;">과잉 친절 → 기준 있는 대화</p>
+                <p style="font-size: 16px;  margin: 0;">코칭 2개월 차에 3번 차인 여자에게 재연락 받음. 현재 교제 4개월.</p>
+            </div>
+            <div class="tiled-box accent-red" style="flex: 1; padding: 35px 30px;">
+                <p style="font-size: 16px;  font-weight: 700; margin-bottom: 15px; letter-spacing: 0.05em;">CASE 3</p>
+                <h3 style="font-size: 24px; margin-bottom: 15px;">C씨 (35세) · 3번 이별 반복</h3>
+                <p class="text-red font-heavy" style="font-size: 18px; margin-bottom: 10px;">매달림 패턴 → 주도적 관계 설계</p>
+                <p style="font-size: 16px;  margin: 0;">"같은 실수를 반복하고 있었다는 걸 카톡 피드백 3일 만에 깨달았습니다."</p>
+            </div>
+        </div>
+        <div style="text-align: center; padding: 20px; background: var(--c-red-bg); border-radius: 12px; border: 1px solid rgba(185, 28, 28, 0.1);">
+            <p class="text-red font-heavy" style="font-size: 22px; margin: 0;">이 분들도 여러분과 똑같은 자리에 앉아 "다 이해했다"고 했습니다.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide28">
+    <div class="section-title-layout animate-fade-up">
+        <h2 class="text-hero font-en" style="margin-bottom: 10px;">KNOWING</h2>
+        <h2 class="text-display" style="color: var(--c-red-bright); margin-bottom: 10px;">≠</h2>
+        <h2 class="text-hero font-en">DOING</h2>
+        <p style="margin-top: 50px; font-size: 26px; font-weight: 500; color: var(--t-muted);">아는 것과 되는 것은 완전히 다릅니다.</p>
+    </div>
+</div>
+
+<!-- S28-2: 66일의 법칙 — 과학적 근거 -->
+<div class="slide-container" id="slide28-2">
+    <div class="content-area animate-fade-up" style="align-items: center; text-align: center;">
+        <p style="font-size: 22px; color: var(--t-muted); margin-bottom: 40px; letter-spacing: 0.05em;">University College London 연구 (2009)</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 50px; margin-bottom: 50px;">
+            <div>
+                <div class="number" style="font-size: 130px;">66</div>
+                <div class="number-label">일</div>
+            </div>
+            <div style="text-align: left; max-width: 500px;">
+                <h3 style="font-size: 32px; line-height: 1.5; margin-bottom: 20px;">새로운 행동이<br>무의식에 정착하는 <span class="text-red">최소 기간</span></h3>
+                <p style="font-size: 20px; color: var(--t-body); margin: 0; line-height: 1.7;">오늘 2시간 강의로<br>66일의 체화가 가능할까요?</p>
+            </div>
+        </div>
+        <div style="padding: 30px 50px; border: 1px solid var(--c-border-strong); border-radius: 12px; background: var(--c-surface-1);">
+            <p class="text-gold font-heavy" style="font-size: 24px; margin: 0;">혼자서 66일을 버틸 수 있습니까?</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide29">
+    <h2 class="slide-title animate-fade-up">혼자서는 실패할 수밖에 없는 이유</h2>
+    <div class="content-area two-column asym-left animate-fade-up delay-1">
+        <div style="display:flex; flex-direction: column; justify-content: center; padding-right: 30px;">
+            <h3 style="font-size: 38px; margin-bottom: 35px;">'관성의 법칙'</h3>
+            <p style="font-size: 20px; margin-bottom: 20px; color: var(--t-body);">아까 카톡 세션에서 제 대응을 보셨죠?</p>
+            <p style="font-size: 20px; margin-bottom: 20px; color: var(--t-body);">여러분은 그걸 <strong style="color: var(--t-heading);">'봤습니다.'</strong></p>
+            <p style="font-size: 24px; color: var(--c-red-bright); font-weight: 800; margin-bottom: 20px;">근데 내일 실전에서 '할 수 있습니까?'</p>
+            <p style="font-size: 20px; color: var(--t-body);">장담하건대, 여자분이 예상치 못한 테스트를 거는 순간 여러분의 뇌는 정지하고 다시 과거의 <strong style="color: var(--t-heading);">'호구 패턴'</strong>으로 돌아갑니다.</p>
+            <div style="margin-top: 40px; padding-left: 20px; border-left: 4px solid var(--c-gold);">
+                <p class="text-gold font-heavy" style="font-size: 22px; margin: 0; line-height: 1.6;">그 차이를 메꿔주는 것이 코칭입니다.</p>
+            </div>
+        </div>
+        <div class="image-wrapper">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Coaching session">
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide30">
+    <h2 class="slide-title animate-fade-up">1:1 프리미엄 실전 코칭</h2>
+    <div class="content-area animate-fade-up delay-1" style="gap: 40px;">
+        <div class="two-column" style="gap: 40px;">
+            <div class="tiled-box" style="padding: 40px 35px;">
+                <i class="fa-solid fa-mobile-screen text-gold" style="font-size: 32px; margin-bottom: 25px;"></i>
+                <h3 style="font-size: 22px; margin-bottom: 20px;">아까 제 카톡 보셨죠?</h3>
+                <p style="font-size: 18px; color: var(--t-body); margin-bottom: 20px;">코칭 수강생은 그 여자가 읽씹했을 때, <strong style="color: var(--t-heading);">3초 안에 정답 텍스트를 받습니다.</strong></p>
+                <div style="padding-top: 20px; border-top: 1px solid var(--c-border-strong);">
+                    <p style="font-size: 16px; color: var(--t-muted); margin: 0;">혼자 30분 고민 vs 프로의 3초 교정<br><strong class="text-red">결과가 같을까요?</strong></p>
+                </div>
+            </div>
+            <div class="tiled-box" style="padding: 40px 35px;">
+                <i class="fa-solid fa-microphone-lines text-gold" style="font-size: 32px; margin-bottom: 25px;"></i>
+                <h3 style="font-size: 22px; margin-bottom: 20px;">실전 시뮬레이션</h3>
+                <p style="font-size: 18px; color: var(--t-body); margin-bottom: 20px;">아까 "오빠 재미없다~"에 뭐라고 해야 하는지 <strong style="color: var(--t-heading);">아는 것과 실제로 말하는 것.</strong></p>
+                <div style="padding-top: 20px; border-top: 1px solid var(--c-border-strong);">
+                    <p style="font-size: 16px; color: var(--t-muted); margin: 0;">롤플레잉으로 <strong class="text-red">66일의 체화</strong>를<br>3개월 안에 만듭니다.</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; padding: 30px 50px; border: 1px solid var(--c-border-strong); border-radius: 12px; background: var(--c-surface-1);">
+            <p style="font-size: 24px; color: var(--t-heading); font-weight: 800; margin: 0;">6개월 뒤, <span class="text-gold">연애하고 있는 쪽</span>은 어디입니까?</p>
+        </div>
+    </div>
+</div>
+
+<!-- S31-감정 CTA: 질문 → 침묵 → 결단 -->
+<div class="slide-container" id="slide31">
+    <div class="qa-layout animate-fade-up">
+        <h2 class="text-h1" style="line-height: 1.6; margin-bottom: 50px;">한 가지만 솔직하게 답해보세요.</h2>
+        <h2 class="text-display" style="line-height: 1.4; margin-bottom: 50px;">지금 이 상태로 다음 연애를 시작하면<br>결과가 <span class="text-red">달라질 거라고 확신</span>합니까?</h2>
+        <div style="border-top: 1px solid var(--c-border-strong); padding-top: 40px; width: 70%; text-align: center;">
+            <p style="font-size: 24px; color: var(--t-body); line-height: 1.7; margin-bottom: 40px;">확신이 없다면, 그게 정답입니다.<br><strong style="color: var(--t-heading);">변화는 혼자 오지 않습니다.</strong></p>
+        </div>
+    </div>
+</div>
+
+<!-- S32-CTA: QR + 희소성 -->
+<div class="slide-container" id="slide32">
+    <div class="qa-layout animate-fade-up">
+        <p class="text-gold font-heavy font-en" style="font-size: 18px; letter-spacing: 0.2em; margin-bottom: 30px;">FREE 1:1 DIAGNOSIS</p>
+        <h2 class="text-h1" style="margin-bottom: 50px;">무료 30분 1:1 진단 신청</h2>
+
+        <div style="display: flex; justify-content: center; gap: 25px; margin-bottom: 50px; width: 90%;">
+            <div style="flex: 1; border: 1px solid var(--c-border-strong); background: var(--c-surface-1); padding: 25px 20px; border-radius: 12px; backdrop-filter: blur(10px); text-align: center;">
+                <i class="fa-solid fa-user-check text-gold" style="font-size: 24px; margin-bottom: 12px;"></i>
+                <p style="color: var(--t-heading); font-size: 18px; font-weight: 800; margin: 0;">1:1 무료 진단 (30분)</p>
+            </div>
+            <div style="flex: 1; border: 1px solid var(--c-border-strong); background: var(--c-surface-1); padding: 25px 20px; border-radius: 12px; backdrop-filter: blur(10px); text-align: center;">
+                <i class="fa-solid fa-comments text-gold" style="font-size: 24px; margin-bottom: 12px;"></i>
+                <p style="color: var(--t-heading); font-size: 18px; font-weight: 800; margin: 0;">카톡 대화 분석 1회</p>
+            </div>
+            <div style="flex: 1; border: 1px solid rgba(225, 29, 72, 0.4); padding: 25px 20px; border-radius: 12px; background-color: var(--c-red-bg); text-align: center;">
+                <i class="fa-solid fa-tag text-red" style="font-size: 24px; margin-bottom: 12px;"></i>
+                <p class="text-red font-heavy" style="font-size: 18px; margin: 0;">당일 등록 특별 할인</p>
+            </div>
+        </div>
+
+        <div style="display: inline-block; background-color: var(--c-surface-2); padding: 20px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); margin-bottom: 30px;">
+            <div style="width: 160px; height: 160px; border: 2px dashed var(--c-border-subtle); border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #F8FAFC;">
+                <p style="color: var(--t-heading); font-weight: 900; margin: 0; font-size: 22px;">QR 스캔</p>
+            </div>
+        </div>
+
+        <p class="text-red font-heavy" style="font-size: 20px; margin-bottom: 10px;">이번 달 코칭 정원: 5명 | 선착순 마감</p>
+        <div class="contact-info">
+            WWW.RELATIONSHIP-MECHANISM.COM
+        </div>
+    </div>
+</div>
+
+<!-- Navigation UI -->
+<button class="nav-arrow prev" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+<button class="nav-arrow next" onclick="changeSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+<div class="slide-counter" id="slideCounter"></div>
+
+<script>
+const slides = document.querySelectorAll('.slide-container');
+let current = 0;
+
+function showSlide(idx) {
+    slides.forEach(s => s.classList.remove('active'));
+    current = Math.max(0, Math.min(idx, slides.length - 1));
+    slides[current].classList.add('active');
+    document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
+    // 화살표 표시/숨김
+    document.querySelector('.nav-arrow.prev').style.opacity = current === 0 ? '0.2' : '1';
+    document.querySelector('.nav-arrow.next').style.opacity = current === slides.length - 1 ? '0.2' : '1';
+}
+
+function changeSlide(dir) {
+    showSlide(current + dir);
+}
+
+// 키보드: Enter, Space, →, ↓ = 다음 / ←, ↑, Backspace = 이전
+document.addEventListener('keydown', (e) => {
+    if (['ArrowRight', 'ArrowDown', 'Enter', ' ', 'PageDown'].includes(e.key)) {
+        e.preventDefault();
+        changeSlide(1);
+    } else if (['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'].includes(e.key)) {
+        e.preventDefault();
+        changeSlide(-1);
+    } else if (e.key === 'Home') {
+        e.preventDefault();
+        showSlide(0);
+    } else if (e.key === 'End') {
+        e.preventDefault();
+        showSlide(slides.length - 1);
+    }
+});
+
+// 초기화
+showSlide(0);
+</script>
+</body>
+</html>
