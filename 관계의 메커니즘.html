@@ -276,6 +276,41 @@
         }
         .quote-box.red { color: var(--c-red-bright); background-color: var(--c-red-bg); border-color: var(--c-red-border); }
         .quote-box.green { color: var(--c-green-text); background-color: var(--c-green-bg); border-color: var(--c-green-border); }
+
+        /* Substep animation */
+        .substep {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+            pointer-events: none;
+        }
+        .substep.visible {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        /* 가로 타임라인 스테이지 노드 */
+        .stage-circle {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: var(--c-surface-1); border: 2px solid var(--c-border-strong);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; font-weight: 900; color: var(--t-heading); font-family: var(--font-en);
+            transition: all 0.4s ease;
+        }
+        .stage-node.stage-active .stage-circle {
+            border-color: var(--c-red-bright); background: rgba(255,0,76,0.15);
+            color: var(--c-red-bright); box-shadow: 0 0 25px rgba(255,0,76,0.3); transform: scale(1.15);
+        }
+
+        /* 디테일 패널 — 하단 영역에 겹쳐서 표시 */
+        .detail-panel {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .detail-panel.visible {
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
@@ -326,7 +361,7 @@
         </div>
     </div>
     <div class="image-container animate-fade-up delay-1">
-        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Direction">
+        <img src="https://images.unsplash.com/photo-1473830394358-91588751b241?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Crossroads">
     </div>
 </div>
 
@@ -525,45 +560,167 @@
     </div>
 </div>
 
-<div class="slide-container" id="slide22">
-    <h2 class="slide-title animate-fade-up">관계의 매커니즘 4단계</h2>
-    <div class="content-area animate-fade-up delay-1">
-        <p style="font-size: 26px; font-weight: 800; color: var(--c-red); margin-bottom: 80px; text-align: center;">보통 3단계에서 가장 많이 거절당합니다. 왜 그럴까요?</p>
+<div class="slide-container" id="slide16">
+    <div class="qa-layout animate-fade-up">
+        <h2 class="big-impact-text">연애는 <span class="text-red">가치전쟁</span>이다.</h2>
+    </div>
+</div>
 
-        <div class="timeline-layout">
-            <div class="timeline-line"></div>
-            <div class="timeline-item">
-                <div class="content-wrapper">
-                    <h3 style="font-size: 24px; margin-bottom: 15px; ">1. 해소</h3>
-                    <p style="font-size: 18px; ">기본적 경계심 허물기</p>
+<!-- ━━━ 관계의 메커니즘 4단계 (가로 플로우 + 서브스텝) ━━━ -->
+<div class="slide-container" id="slide22" data-substeps="9">
+    <h2 class="slide-title animate-fade-up">관계의 메커니즘 4단계</h2>
+    <div class="content-area" style="justify-content: flex-start; gap: 0; padding-top: 10px;">
+
+        <!-- ── 상단: 가로 타임라인 (4단계) ── -->
+        <div style="display: flex; align-items: center; width: 100%; gap: 0; margin-bottom: 28px; flex-shrink: 0;">
+
+            <!-- 1단계 -->
+            <div class="substep stage-node" data-step="1" id="sn1" style="flex: 1; text-align: center;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <div class="stage-circle">1</div>
+                    <h3 style="font-size: 18px; margin: 0; color: var(--t-heading);">사람인지 아닌지</h3>
+                    <p style="font-size: 13px; color: var(--t-muted); margin: 0;">"이 사람 괜찮은가?"</p>
                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="content-wrapper">
-                    <h3 style="font-size: 24px; margin-bottom: 15px; ">2. 정보성 질문</h3>
-                    <p style="font-size: 18px; ">상대적 가치 측정</p>
+            <div class="substep" data-step="2" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
+
+            <!-- 2단계 -->
+            <div class="substep stage-node" data-step="3" id="sn2" style="flex: 1; text-align: center;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <div class="stage-circle">2</div>
+                    <h3 style="font-size: 18px; margin: 0; color: var(--t-heading);">정보성 질문</h3>
+                    <p style="font-size: 13px; color: var(--t-muted); margin: 0;">가치 탐색 단계</p>
                 </div>
             </div>
-            <div class="timeline-item active">
-                <div class="content-wrapper">
-                    <h3 class="text-red" style="font-size: 28px; margin-bottom: 15px; font-weight: 900;">3. 테스트</h3>
-                    <p class="font-heavy" style="color: var(--t-heading); font-size: 20px;">알파/베타 프레임 확인</p>
+            <div class="substep" data-step="3" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
+
+            <!-- 3단계 -->
+            <div class="substep stage-node" data-step="4" id="sn3" style="flex: 1; text-align: center;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <div class="stage-circle" style="background: rgba(255,0,76,0.15); border-color: var(--c-red-bright); color: var(--c-red-bright);">3</div>
+                    <h3 class="text-red" style="font-size: 18px; margin: 0;">알파/베타 측정</h3>
+                    <p style="font-size: 13px; color: var(--t-muted); margin: 0;">"리드할 수 있나?"</p>
                 </div>
             </div>
-            <div class="timeline-item">
-                <div class="content-wrapper">
-                    <h3 style="font-size: 24px; margin-bottom: 15px; ">4. 관계 결정</h3>
-                    <p style="font-size: 18px; ">최종 판단 및 몰입</p>
+            <div class="substep" data-step="8" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
+
+            <!-- 4단계 -->
+            <div class="substep stage-node" data-step="9" id="sn4" style="flex: 1; text-align: center;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <div class="stage-circle" style="background: var(--c-gold-glow); border-color: var(--c-gold); color: var(--c-gold-bright);">4</div>
+                    <h3 class="text-gold" style="font-size: 18px; margin: 0;">성적 가치 판단</h3>
+                    <p style="font-size: 13px; color: var(--t-muted); margin: 0;">최종 관문</p>
                 </div>
             </div>
+        </div>
+
+        <!-- ── 구분선 ── -->
+        <div style="width: 100%; height: 1px; background: var(--c-border-strong); flex-shrink: 0; margin-bottom: 24px;"></div>
+
+        <!-- ── 하단: 디테일 패널 (position relative, 패널끼리 겹침) ── -->
+        <div style="flex: 1; position: relative; width: 100%; min-height: 0; overflow: hidden;">
+
+            <!-- step 2: 해소 -->
+            <div class="substep detail-panel" data-step="2">
+                <div style="display: flex; gap: 40px; align-items: center; height: 100%;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 24px;">
+                            <i class="fa-solid fa-key text-gold" style="font-size: 28px;"></i>
+                            <h3 class="text-gold" style="font-size: 32px; margin: 0;">해소의 필요성</h3>
+                        </div>
+                        <p style="font-size: 22px; color: var(--t-body); line-height: 1.7; margin-bottom: 20px;">1단계에서 경계심을 넘기려면<br><strong style="color: var(--t-heading);">"해소"</strong>가 반드시 들어가야 합니다.</p>
+                        <p style="font-size: 18px; color: var(--t-sub); margin: 0;">해소 없이 다음 단계로 넘어가면<br>관계는 시작도 전에 끝납니다.</p>
+                    </div>
+                    <div style="flex: 0 0 320px; background: var(--c-gold-glow); border: 1px solid rgba(254,229,0,0.3); border-radius: 20px; padding: 40px 35px; text-align: center;">
+                        <div style="font-size: 64px; font-weight: 900; font-family: var(--font-en); color: var(--c-gold-bright); margin-bottom: 15px;">1</div>
+                        <p style="font-size: 15px; color: var(--t-muted); letter-spacing: 0.1em; margin-bottom: 8px;">STAGE 1 → KEY</p>
+                        <h3 style="font-size: 28px; color: var(--t-heading); margin: 0;">해소</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 4 (hidden detail not needed, stage 3 node is enough) -->
+
+            <!-- step 5: 분기 -->
+            <div class="substep detail-panel" data-step="5">
+                <div style="display: flex; gap: 30px; height: 100%; align-items: stretch;">
+                    <!-- 베타 -->
+                    <div style="flex: 1; background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 20px; padding: 35px 30px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--t-muted);"></div>
+                        <p style="font-size: 14px; color: var(--t-muted); font-weight: 700; letter-spacing: 0.15em; margin-bottom: 20px;">베타 판정</p>
+                        <h3 style="font-size: 30px; margin-bottom: 15px;"><i class="fa-solid fa-xmark" style="color: var(--c-red); margin-right: 10px;"></i>여자는 사라진다</h3>
+                        <p style="font-size: 18px; color: var(--t-muted); margin: 0;">읽씹 · 갑자기 바빠짐 · 연락 끊김</p>
+                    </div>
+                    <!-- 알파 -->
+                    <div style="flex: 1; background: rgba(0,230,118,0.06); border: 1px solid var(--c-green-border); border-radius: 20px; padding: 35px 30px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--c-green);"></div>
+                        <p style="font-size: 14px; color: var(--c-green); font-weight: 700; letter-spacing: 0.15em; margin-bottom: 20px;">알파 판정</p>
+                        <h3 style="font-size: 30px; margin-bottom: 15px;"><i class="fa-solid fa-check" style="color: var(--c-green); margin-right: 10px;"></i>정보성 질문이 나온다</h3>
+                        <p style="font-size: 18px; color: var(--t-sub); margin: 0;">이상형 · 연애 경험 · 어떤 사람 좋아해?</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 6: 알파 → 정보성 질문 상세 -->
+            <div class="substep detail-panel" data-step="6">
+                <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                    <p style="font-size: 20px; color: var(--t-sub); margin-bottom: 25px;">알파로 판정되면, 여자는 <strong style="color: var(--t-heading);">남녀 관계에 대한 질문</strong>을 던진다:</p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 35px;">
+                        <span style="background: var(--c-surface-2); padding: 16px 28px; border-radius: 40px; font-size: 20px; color: var(--t-heading); font-weight: 700; border: 1px solid var(--c-border-strong);">"이상형이 누구야?"</span>
+                        <span style="background: var(--c-surface-2); padding: 16px 28px; border-radius: 40px; font-size: 20px; color: var(--t-heading); font-weight: 700; border: 1px solid var(--c-border-strong);">"연애 얼마나 했어?"</span>
+                        <span style="background: var(--c-surface-2); padding: 16px 28px; border-radius: 40px; font-size: 20px; color: var(--t-heading); font-weight: 700; border: 1px solid var(--c-border-strong);">"어떤 사람 좋아해?"</span>
+                    </div>
+                    <div style="background: var(--c-red-bg); border: 1px solid var(--c-red-border); border-radius: 14px; padding: 22px 30px; display: flex; align-items: center; gap: 18px;">
+                        <i class="fa-solid fa-brain text-red" style="font-size: 26px;"></i>
+                        <div>
+                            <p style="font-size: 20px; color: var(--t-body); margin-bottom: 4px;">"이 남자가 정말 나를 사랑해줄 수 있나?"</p>
+                            <p class="text-red font-heavy" style="font-size: 18px; margin: 0;">→ 여자 입장에서 반박하고 싶은 심리가 나타난다</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 7: 반박제거 -->
+            <div class="substep detail-panel" data-step="7">
+                <div style="display: flex; gap: 40px; height: 100%; align-items: center;">
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 30px; margin-bottom: 25px; color: var(--t-heading);">반박제거가 필요하다</h3>
+                        <p style="font-size: 20px; color: var(--t-body); line-height: 1.7; margin-bottom: 30px;">반박 심리를 해소하지 못하면<br>여자는 <strong class="text-red">방어 모드</strong>에 들어갑니다.</p>
+                        <p style="font-size: 18px; color: var(--t-sub);">반박제거 = 감정적 안전감 + 리드하는 사람이라는 확신</p>
+                    </div>
+                    <div style="flex: 0 0 400px; background: rgba(0,230,118,0.06); border: 1px solid var(--c-green-border); border-radius: 20px; padding: 35px 30px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                            <i class="fa-solid fa-circle-check" style="font-size: 24px; color: var(--c-green);"></i>
+                            <h3 style="font-size: 22px; margin: 0; color: var(--c-green);">반박제거 성공 시</h3>
+                        </div>
+                        <p style="font-size: 17px; color: var(--t-body); margin-bottom: 16px;">이런 말이 <strong style="color: var(--t-heading);">나오지 않는다:</strong></p>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
+                            <span style="background: rgba(255,255,255,0.05); padding: 12px 22px; border-radius: 30px; font-size: 18px; color: var(--t-muted); text-decoration: line-through; border: 1px solid var(--c-border-subtle); display: inline-block;">"오빠 나 이럴려고 만나"</span>
+                            <span style="background: rgba(255,255,255,0.05); padding: 12px 22px; border-radius: 30px; font-size: 18px; color: var(--t-muted); text-decoration: line-through; border: 1px solid var(--c-border-subtle); display: inline-block;">"우리 빠른 거 같아"</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 9: 4단계 디테일 -->
+            <div class="substep detail-panel" data-step="9">
+                <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center;">
+                    <div style="font-size: 100px; font-weight: 900; font-family: var(--font-en); color: var(--c-gold-bright); line-height: 1; margin-bottom: 20px; text-shadow: 0 0 40px var(--c-gold-glow);">4</div>
+                    <h3 class="text-gold" style="font-size: 36px; margin-bottom: 20px;">성적 가치 판단</h3>
+                    <p style="font-size: 22px; color: var(--t-body); margin: 0;">최종 관문 — "이 사람과 관계를 맺을 가치가 있는가?"</p>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
-
-<div class="slide-container" id="slide16">
-    <div class="qa-layout animate-fade-up">
-        <h2 class="big-impact-text">연애는 <span class="text-red">가치전쟁</span>이다.</h2>
+<div class="slide-container" id="slide-calibration">
+    <div class="section-title-layout animate-fade-up">
+        <p class="text-gold font-heavy font-en" style="font-size: 18px; letter-spacing: 0.2em; margin-bottom: 30px;">CALIBRATION</p>
+        <h2 class="text-display" style="margin-bottom: 30px;">칼리브레이션</h2>
+        <hr>
+        <p style="font-size: 30px; color: var(--t-body); font-weight: 500; margin-top: 10px;">여자의 <span class="text-red font-heavy">무엇</span>을 볼 것이냐?</p>
     </div>
 </div>
 
@@ -646,7 +803,7 @@
             <p style="font-size: 18px; color: var(--t-muted); font-style: italic; margin-top: 20px;">(딱 3초 드리겠습니다. 생각해보세요.)</p>
         </div>
         <div class="image-wrapper">
-            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Man waiting for reply">
+            <img src="https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Texting on phone">
         </div>
     </div>
 </div>
@@ -713,8 +870,9 @@
 <!-- S25: 선언 먼저 → 영상으로 증명 -->
 <div class="slide-container" id="slide25">
     <div class="section-title-layout animate-fade-up">
-        <h2 class="text-display" style="margin-bottom: 20px;">호감은 <span style="text-decoration: line-through;  font-weight: 500;">'편안함'</span>이 아니라</h2>
-        <h2 class="text-hero text-red" style="margin-top: 10px;">'긴장'이다.</h2>
+        <h2 class="text-display" style="margin-bottom: 20px;">남자로 느껴지게 만드는 것,</h2>
+        <h2 class="text-display" style="margin-bottom: 20px;"><span style="text-decoration: line-through; font-weight: 500;">'편안함'</span>이 아니라</h2>
+        <h2 class="text-hero text-red" style="margin-top: 10px;">'불확실성'이다.</h2>
     </div>
 </div>
 
@@ -973,28 +1131,107 @@
 const slides = document.querySelectorAll('.slide-container');
 let current = 0;
 
+// 서브스텝 상태 관리
+let substepIndex = 0; // 현재까지 보여진 서브스텝 수
+
+function getMaxStep(slide) {
+    const subs = slide.querySelectorAll('.substep');
+    if (!subs.length) return 0;
+    let max = 0;
+    subs.forEach(s => { const v = parseInt(s.dataset.step); if (v > max) max = v; });
+    return max;
+}
+
+function showSubsteps(slide, upTo) {
+    // 디테일 패널: 현재 스텝만 보이게 (이전 패널은 숨김)
+    const detailPanels = slide.querySelectorAll('.detail-panel');
+    let activeDetailStep = 0;
+    detailPanels.forEach(p => {
+        const step = parseInt(p.dataset.step);
+        if (step <= upTo) activeDetailStep = Math.max(activeDetailStep, step);
+    });
+
+    slide.querySelectorAll('.substep').forEach(s => {
+        const step = parseInt(s.dataset.step);
+        const isDetail = s.classList.contains('detail-panel');
+        if (isDetail) {
+            // 디테일 패널은 가장 최근 것만 표시
+            if (step === activeDetailStep && step <= upTo) { s.classList.add('visible'); }
+            else { s.classList.remove('visible'); }
+        } else {
+            if (step <= upTo) s.classList.add('visible');
+            else s.classList.remove('visible');
+        }
+    });
+
+    // 스테이지 노드 하이라이트
+    const stageMap = { 'sn1': [1,2], 'sn2': [3], 'sn3': [4,5,6,7], 'sn4': [8,9] };
+    Object.entries(stageMap).forEach(([id, steps]) => {
+        const node = document.getElementById(id);
+        if (!node) return;
+        if (steps.some(s => s <= upTo) && upTo >= steps[0]) {
+            // 현재 활성 스테이지 = upTo가 이 범위 안에 있을 때
+            const isCurrentStage = upTo >= steps[0] && upTo <= steps[steps.length - 1];
+            if (isCurrentStage) node.classList.add('stage-active');
+            else node.classList.remove('stage-active');
+        } else {
+            node.classList.remove('stage-active');
+        }
+    });
+}
+
 function showSlide(idx) {
-    slides.forEach(s => s.classList.remove('active'));
+    slides.forEach(s => {
+        s.classList.remove('active');
+        s.querySelectorAll('.substep').forEach(sub => sub.classList.remove('visible'));
+    });
     current = Math.max(0, Math.min(idx, slides.length - 1));
     slides[current].classList.add('active');
+    substepIndex = 0;
     document.getElementById('slideCounter').textContent = (current + 1) + ' / ' + slides.length;
-    // 화살표 표시/숨김
     document.querySelector('.nav-arrow.prev').style.opacity = current === 0 ? '0.2' : '1';
     document.querySelector('.nav-arrow.next').style.opacity = current === slides.length - 1 ? '0.2' : '1';
 }
 
-function changeSlide(dir) {
-    showSlide(current + dir);
+function goNext() {
+    const maxStep = getMaxStep(slides[current]);
+    if (maxStep > 0 && substepIndex < maxStep) {
+        substepIndex++;
+        showSubsteps(slides[current], substepIndex);
+    } else {
+        showSlide(current + 1);
+    }
 }
 
-// 키보드: Enter, Space, →, ↓ = 다음 / ←, ↑, Backspace = 이전
+function goPrev() {
+    const maxStep = getMaxStep(slides[current]);
+    if (maxStep > 0 && substepIndex > 0) {
+        substepIndex--;
+        showSubsteps(slides[current], substepIndex);
+    } else {
+        showSlide(current - 1);
+        // 이전 슬라이드로 갈 때 서브스텝 전부 표시
+        const prevMax = getMaxStep(slides[current]);
+        if (prevMax > 0) {
+            substepIndex = prevMax;
+            showSubsteps(slides[current], substepIndex);
+        }
+    }
+}
+
+function changeSlide(dir) {
+    if (dir > 0) goNext();
+    else goPrev();
+}
+
+// 키보드
 document.addEventListener('keydown', (e) => {
     if (['ArrowRight', 'ArrowDown', 'Enter', ' ', 'PageDown'].includes(e.key)) {
         e.preventDefault();
-        changeSlide(1);
+        goNext();
     } else if (['ArrowLeft', 'ArrowUp', 'Backspace', 'PageUp'].includes(e.key)) {
         e.preventDefault();
-        changeSlide(-1);
+        goPrev();
     } else if (e.key === 'Home') {
         e.preventDefault();
         showSlide(0);
@@ -1004,7 +1241,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// 초기화
 showSlide(0);
 </script>
 </body>
