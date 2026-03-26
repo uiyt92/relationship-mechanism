@@ -655,20 +655,19 @@
                         <div style="background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 20px; padding: 40px 35px; text-align: center; min-width: 200px;">
                             <div style="font-size: 56px; margin-bottom: 16px;">🧠</div>
                             <h4 style="font-size: 28px; color: var(--t-heading); margin: 0 0 12px;">자아</h4>
-                            <p style="font-size: 18px; color: var(--t-muted); margin: 0;">현실적 판단</p>
+                            <p style="font-size: 18px; color: var(--t-muted); margin: 0;">자유의지</p>
                         </div>
                         <div style="background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 20px; padding: 40px 35px; text-align: center; min-width: 200px;">
                             <div style="font-size: 56px; margin-bottom: 16px;">⚖️</div>
                             <h4 style="font-size: 28px; color: var(--t-heading); margin: 0 0 12px;">초자아</h4>
-                            <p style="font-size: 18px; color: var(--t-muted); margin: 0;">도덕적 기준</p>
+                            <p style="font-size: 18px; color: var(--t-muted); margin: 0;">비교</p>
                         </div>
                         <div style="background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 20px; padding: 40px 35px; text-align: center; min-width: 200px;">
                             <div style="font-size: 56px; margin-bottom: 16px;">🔥</div>
                             <h4 style="font-size: 28px; color: var(--t-heading); margin: 0 0 12px;">욕구</h4>
-                            <p style="font-size: 18px; color: var(--t-muted); margin: 0;">본능적 충동</p>
+                            <p style="font-size: 18px; color: var(--t-muted); margin: 0;">결핍</p>
                         </div>
                     </div>
-                    <p style="font-size: 22px; color: var(--t-sub); text-align: center; margin: 0;">세 가지가 충돌할 때, <strong style="color: var(--c-gold-bright); font-size: 24px;">핵심가치</strong>가 방향을 결정한다.</p>
                 </div>
             </div>
 
@@ -718,15 +717,21 @@
     </div>
 </div>
 
-<!-- ━━━ 슬라이드 15c: 호기심/신뢰/가치 브랜드 그래프 ━━━ -->
+<!-- ━━━ 슬라이드 15c: 호기심/신뢰/가치 ━━━ -->
 <div class="slide-container" id="slide15c">
-    <div class="content-area animate-fade-up" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;">
-        <!-- 상단 키워드 -->
-        <div style="display: flex; gap: 24px; margin-bottom: 10px;">
-            <span style="font-size: 22px; font-weight: 800; color: var(--c-red);">호기심</span>
-            <span style="font-size: 22px; font-weight: 800; color: #4A9EFF;">신뢰</span>
-            <span style="font-size: 22px; font-weight: 800; color: var(--c-gold-bright);">가치</span>
+    <div class="content-area animate-fade-up" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px;">
+        <div style="display: flex; gap: 24px;">
+            <span style="font-size: 28px; font-weight: 800; color: var(--c-red);">호기심</span>
+            <span style="font-size: 28px; font-weight: 800; color: #4A9EFF;">신뢰</span>
+            <span style="font-size: 28px; font-weight: 800; color: var(--c-gold-bright);">가치</span>
         </div>
+        <p style="font-size: 22px; color: var(--t-heading); text-align: center; margin: 0; font-weight: 700;">이게 있어야 사람은 <span class="text-gold">구매</span>를 합니다.</p>
+    </div>
+</div>
+
+<!-- ━━━ 슬라이드 15d: 브랜드 그래프 ━━━ -->
+<div class="slide-container" id="slide15d">
+    <div class="content-area animate-fade-up" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;">
         <!-- 그래프 -->
         <div style="position: relative; width: 100%; max-width: 900px; height: 420px; background: var(--c-surface-1); border: 1px solid var(--c-border-strong); border-radius: 20px; overflow: hidden; padding: 20px;">
             <!-- Y축 라벨 -->
@@ -763,6 +768,15 @@
             </svg>
         </div>
         <p style="font-size: 20px; color: var(--t-sub); text-align: center; margin: 0;"><span class="text-red">호기심</span>과 <span style="color: #4A9EFF;">신뢰</span>가 쌓일수록, <span class="text-gold">가치</span>는 올라간다.</p>
+    </div>
+</div>
+
+<!-- ━━━ 슬라이드 15e: 매력 / 유연 기준 ━━━ -->
+<div class="slide-container" id="slide15e">
+    <div class="content-area animate-fade-up" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px;">
+        <p style="font-size: 22px; color: var(--t-sub); text-align: center; margin: 0; line-height: 1.8;">매력이란<br><span style="font-size: 26px; color: var(--t-heading); font-weight: 800;">인위적이지 않고, 자연스럽게 끌리는 것</span></p>
+        <div style="width: 60px; height: 1px; background: var(--c-border-strong);"></div>
+        <p class="text-gold font-heavy" style="font-size: 32px; margin: 0; letter-spacing: 0.05em;">유연 기준</p>
     </div>
 </div>
 
@@ -2116,7 +2130,7 @@ const partMap = {
     'slide5': '02', 'slide6': '02',
     'slide7': '03', 'slide8': '03', 'slide10': '03',
     'slide11': '03', 'slide12': '03', 'slide13': '03', 'slide13-2': '03',
-    'slide14': '03', 'slide15': '03', 'slide15b': '03', 'slide15c': '03',
+    'slide14': '03', 'slide15': '03', 'slide15b': '03', 'slide15c': '03', 'slide15d': '03', 'slide15e': '03',
     'slide16': '04', 'slide22': '04',
     'slide-calibration': '05', 'slide-cal-1': '05', 'slide-cal-2': '05', 'slide-cal-3': '05',
     'slide20': '06', 'slide-katalk': '06', 'slide-katalk-bridge': '06', 'slide21': '06', 'slide25': '06',
