@@ -542,18 +542,28 @@
     </div>
 </div>
 
-<!-- ━━━ 슬라이드 10c: 후기/상세페이지/B&A ━━━ -->
-<div class="slide-container" id="slide10c">
-    <div class="content-area animate-fade-up" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;">
-        <div style="display: flex; gap: 20px;">
-            <div style="background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 16px; padding: 28px 36px; text-align: center;">
-                <p style="font-size: 24px; color: var(--t-heading); font-weight: 800; margin: 0;">후기</p>
+<!-- ━━━ 슬라이드 10c: 후기/상세페이지/B&A (이미지) ━━━ -->
+<div class="slide-container" id="slide10c" data-substeps="3">
+    <div class="qa-layout" style="position: relative;">
+        <!-- step 1: 후기 -->
+        <div class="substep detail-panel" data-step="1" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
+            <p style="font-size: 24px; color: var(--t-heading); font-weight: 800; margin: 0;">후기</p>
+            <div class="image-wrapper" style="width: 100%; max-width: 420px;">
+                <img src="./images/review_screenshot.png" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: 1px solid var(--c-border-strong);" alt="후기">
             </div>
-            <div style="background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 16px; padding: 28px 36px; text-align: center;">
-                <p style="font-size: 24px; color: var(--t-heading); font-weight: 800; margin: 0;">상세페이지</p>
+        </div>
+        <!-- step 2: 상세페이지 -->
+        <div class="substep detail-panel" data-step="2" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
+            <p style="font-size: 24px; color: var(--t-heading); font-weight: 800; margin: 0;">상세페이지</p>
+            <div class="image-wrapper" style="width: 100%; max-width: 420px;">
+                <img src="./images/detail_page.png" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: 1px solid var(--c-border-strong);" alt="상세페이지">
             </div>
-            <div style="background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 16px; padding: 28px 36px; text-align: center;">
-                <p style="font-size: 24px; color: var(--t-heading); font-weight: 800; margin: 0;">Before &amp; After</p>
+        </div>
+        <!-- step 3: Before & After -->
+        <div class="substep detail-panel" data-step="3" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;">
+            <p style="font-size: 24px; color: var(--t-heading); font-weight: 800; margin: 0;">Before &amp; After</p>
+            <div class="image-wrapper" style="width: 100%; max-width: 500px;">
+                <img src="./images/before_after.jpg" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: 1px solid var(--c-border-strong);" alt="Before & After">
             </div>
         </div>
     </div>
