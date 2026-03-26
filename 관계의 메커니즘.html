@@ -575,7 +575,7 @@
 </div>
 
 <!-- ━━━ 관계의 메커니즘 4단계 (가로 플로우 + 서브스텝) ━━━ -->
-<div class="slide-container" id="slide22" data-substeps="9">
+<div class="slide-container" id="slide22" data-substeps="10">
     <h2 class="slide-title animate-fade-up">관계의 메커니즘 4단계</h2>
     <div class="content-area" style="justify-content: flex-start; gap: 0; padding-top: 10px;">
 
@@ -603,17 +603,17 @@
             <div class="substep" data-step="3" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
 
             <!-- 3단계 -->
-            <div class="substep stage-node" data-step="4" id="sn3" style="flex: 1; text-align: center;">
+            <div class="substep stage-node" data-step="5" id="sn3" style="flex: 1; text-align: center;">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                     <div class="stage-circle" style="background: rgba(255,0,76,0.15); border-color: var(--c-red-bright); color: var(--c-red-bright);">3</div>
                     <h3 class="text-red" style="font-size: 18px; margin: 0;">알파/베타 측정</h3>
                     <p style="font-size: 13px; color: var(--t-muted); margin: 0;">"리드할 수 있나?"</p>
                 </div>
             </div>
-            <div class="substep" data-step="8" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
+            <div class="substep" data-step="9" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
 
             <!-- 4단계 -->
-            <div class="substep stage-node" data-step="9" id="sn4" style="flex: 1; text-align: center;">
+            <div class="substep stage-node" data-step="10" id="sn4" style="flex: 1; text-align: center;">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                     <div class="stage-circle" style="background: var(--c-gold-glow); border-color: var(--c-gold); color: var(--c-gold-bright);">4</div>
                     <h3 class="text-gold" style="font-size: 18px; margin: 0;">성적 가치 판단</h3>
@@ -647,10 +647,37 @@
                 </div>
             </div>
 
-            <!-- step 4 (hidden detail not needed, stage 3 node is enough) -->
+            <!-- step 4: 정보성 질문 상세 -->
+            <div class="substep detail-panel" data-step="4">
+                <div style="display: flex; gap: 40px; height: 100%; align-items: center;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 24px;">
+                            <i class="fa-solid fa-magnifying-glass text-gold" style="font-size: 28px;"></i>
+                            <h3 class="text-gold" style="font-size: 32px; margin: 0;">정보성 질문 단계</h3>
+                        </div>
+                        <p style="font-size: 22px; color: var(--t-body); line-height: 1.7; margin-bottom: 20px;">해소 단계를 거쳐 <strong style="color: var(--t-heading);">"사람"</strong>으로 판정되면,<br>여자는 <strong style="color: var(--c-gold-bright);">당신의 가치를 탐색</strong>하기 시작합니다.</p>
+                        <p style="font-size: 18px; color: var(--t-sub); margin: 0;">이 단계에서 나오는 질문들은 전부<br><strong style="color: var(--t-heading);">"이 사람이 어떤 사람인지"</strong> 파악하려는 것입니다.</p>
+                    </div>
+                    <div style="flex: 0 0 360px; display: flex; flex-direction: column; gap: 16px;">
+                        <div style="background: var(--c-gold-glow); border: 1px solid rgba(254,229,0,0.2); border-radius: 14px; padding: 20px 28px;">
+                            <p style="font-size: 13px; color: var(--c-gold); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 10px;">사람 자체에 대한 질문</p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                <span style="background: rgba(254,229,0,0.08); padding: 10px 20px; border-radius: 30px; font-size: 17px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(254,229,0,0.15);">"무슨 일 해?"</span>
+                                <span style="background: rgba(254,229,0,0.08); padding: 10px 20px; border-radius: 30px; font-size: 17px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(254,229,0,0.15);">"어디 살아?"</span>
+                                <span style="background: rgba(254,229,0,0.08); padding: 10px 20px; border-radius: 30px; font-size: 17px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(254,229,0,0.15);">"취미가 뭐야?"</span>
+                                <span style="background: rgba(254,229,0,0.08); padding: 10px 20px; border-radius: 30px; font-size: 17px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(254,229,0,0.15);">"몇 살이야?"</span>
+                            </div>
+                        </div>
+                        <div style="background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 14px; padding: 18px 28px; text-align: center;">
+                            <p style="font-size: 16px; color: var(--t-muted); margin-bottom: 6px;">이 질문의 본질</p>
+                            <p style="font-size: 20px; color: var(--t-heading); font-weight: 800; margin: 0;">"이 남자의 가치가 얼마나 되는가?"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <!-- step 5: 분기 -->
-            <div class="substep detail-panel" data-step="5">
+            <!-- step 6: 분기 -->
+            <div class="substep detail-panel" data-step="6">
                 <div style="display: flex; gap: 30px; height: 100%; align-items: stretch;">
                     <!-- 베타 -->
                     <div style="flex: 1; background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 20px; padding: 35px 30px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;">
@@ -669,8 +696,8 @@
                 </div>
             </div>
 
-            <!-- step 6: 알파 → 정보성 질문 상세 -->
-            <div class="substep detail-panel" data-step="6">
+            <!-- step 7: 알파 → 정보성 질문 상세 -->
+            <div class="substep detail-panel" data-step="7">
                 <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
                     <p style="font-size: 20px; color: var(--t-sub); margin-bottom: 25px;">알파로 판정되면, 여자는 <strong style="color: var(--t-heading);">남녀 관계에 대한 질문</strong>을 던진다:</p>
                     <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 35px;">
@@ -688,8 +715,8 @@
                 </div>
             </div>
 
-            <!-- step 7: 반박제거 -->
-            <div class="substep detail-panel" data-step="7">
+            <!-- step 8: 반박제거 -->
+            <div class="substep detail-panel" data-step="8">
                 <div style="display: flex; gap: 40px; height: 100%; align-items: center;">
                     <div style="flex: 1;">
                         <h3 style="font-size: 30px; margin-bottom: 25px; color: var(--t-heading);">반박제거가 필요하다</h3>
@@ -710,8 +737,8 @@
                 </div>
             </div>
 
-            <!-- step 9: 4단계 디테일 -->
-            <div class="substep detail-panel" data-step="9">
+            <!-- step 10: 4단계 디테일 -->
+            <div class="substep detail-panel" data-step="10">
                 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center;">
                     <div style="font-size: 100px; font-weight: 900; font-family: var(--font-en); color: var(--c-gold-bright); line-height: 1; margin-bottom: 20px; text-shadow: 0 0 40px var(--c-gold-glow);">4</div>
                     <h3 class="text-gold" style="font-size: 36px; margin-bottom: 20px;">성적 가치 판단</h3>
@@ -1585,7 +1612,7 @@ function showSubsteps(slide, upTo) {
     });
 
     // 스테이지 노드 하이라이트
-    const stageMap = { 'sn1': [1,2], 'sn2': [3], 'sn3': [4,5,6,7], 'sn4': [8,9] };
+    const stageMap = { 'sn1': [1,2], 'sn2': [3,4], 'sn3': [5,6,7,8], 'sn4': [9,10] };
     Object.entries(stageMap).forEach(([id, steps]) => {
         const node = document.getElementById(id);
         if (!node) return;
