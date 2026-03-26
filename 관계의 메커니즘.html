@@ -843,38 +843,39 @@
 </div>
 
 <!-- ━━━ 칼리브레이션 파트: 자존감의 본질 ━━━ -->
-<div class="slide-container" id="slide-cal-2">
+<div class="slide-container" id="slide-cal-2" data-substeps="3">
     <h2 class="slide-title animate-fade-up">여자도 똑같이 본다</h2>
-    <div class="content-area animate-fade-up delay-1" style="max-width: 900px; margin: 0 auto;">
-        <div style="text-align: center; margin-bottom: 50px;">
+    <div class="content-area animate-fade-up delay-1" style="max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 30px;">
+        <div style="text-align: center;">
             <p style="font-size: 28px; color: var(--t-body); font-weight: 500; line-height: 1.6;">이 사람은 부정을 마주하면<br><span class="text-red font-heavy" style="font-size: 34px;">어떻게 행동하는가?</span></p>
         </div>
-        <div style="display: flex; gap: 30px; justify-content: center;">
-            <div style="flex: 1; background: var(--c-surface-1); border: 1px solid var(--c-border-strong); border-radius: 16px; padding: 40px 30px; text-align: center;">
-                <p style="font-size: 20px; color: var(--t-muted); margin-bottom: 15px;">기준 = 선택의 방향성</p>
-                <hr style="border-color: rgba(255,255,255,0.05); margin: 20px 0;">
-                <div style="display: flex; justify-content: center; gap: 40px;">
-                    <div>
-                        <i class="fa-solid fa-person-running" style="font-size: 36px; color: var(--c-red); margin-bottom: 15px; display: block;"></i>
-                        <p style="color: var(--c-red); font-weight: 800; font-size: 20px; margin: 0;">문제를 피하는가?</p>
-                    </div>
-                    <div style="display: flex; align-items: center;">
-                        <span style="font-size: 28px; color: var(--t-muted); font-weight: 300;">vs</span>
-                    </div>
-                    <div>
-                        <i class="fa-solid fa-shield-halved" style="font-size: 36px; color: var(--c-green); margin-bottom: 15px; display: block;"></i>
-                        <p style="color: var(--c-green); font-weight: 800; font-size: 20px; margin: 0;">마주하는가?</p>
-                    </div>
-                </div>
-                <hr style="border-color: rgba(255,255,255,0.05); margin: 25px 0;">
-                <p style="font-size: 20px; color: var(--t-sub); margin: 0;">고난과 편안함 중에 어떤 것을 선택하는가?</p>
+        <!-- step 1: 기준 -->
+        <div class="substep" data-step="1" style="background: var(--c-surface-1); border: 1px solid var(--c-border-strong); border-radius: 16px; padding: 30px 40px; text-align: center; width: 100%;">
+            <p style="font-size: 24px; color: var(--t-heading); font-weight: 800; margin: 0;">기준 = <span class="text-gold">선택의 방향성</span></p>
+        </div>
+        <!-- step 2: 피하는가 vs 마주하는가 -->
+        <div class="substep" data-step="2" style="width: 100%; display: flex; justify-content: center; gap: 40px;">
+            <div style="flex: 1; background: var(--c-red-bg); border: 1px solid var(--c-red-border); border-radius: 16px; padding: 35px 25px; text-align: center;">
+                <i class="fa-solid fa-person-running" style="font-size: 40px; color: var(--c-red); margin-bottom: 15px; display: block;"></i>
+                <p style="color: var(--c-red); font-weight: 800; font-size: 22px; margin: 0;">문제를 피하는가?</p>
             </div>
+            <div style="display: flex; align-items: center;">
+                <span style="font-size: 32px; color: var(--t-muted); font-weight: 300;">vs</span>
+            </div>
+            <div style="flex: 1; background: rgba(0,230,118,0.06); border: 1px solid var(--c-green-border); border-radius: 16px; padding: 35px 25px; text-align: center;">
+                <i class="fa-solid fa-shield-halved" style="font-size: 40px; color: var(--c-green); margin-bottom: 15px; display: block;"></i>
+                <p style="color: var(--c-green); font-weight: 800; font-size: 22px; margin: 0;">마주하는가?</p>
+            </div>
+        </div>
+        <!-- step 3: 고난과 편안함 -->
+        <div class="substep" data-step="3" style="text-align: center; width: 100%;">
+            <p style="font-size: 24px; color: var(--t-body); font-weight: 600; margin: 0;">고난과 편안함 중에 <span class="text-gold" style="font-size: 28px; font-weight: 800;">어떤 것을 선택하는가?</span></p>
         </div>
     </div>
 </div>
 
 <!-- ━━━ 칼리브레이션 파트: 정원 비유 + 슈퍼내츄럴 ━━━ -->
-<div class="slide-container" id="slide-cal-3">
+<div class="slide-container" id="slide-cal-3" data-substeps="5">
     <div class="content-area animate-fade-up" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;">
 
         <!-- SVG 일러스트: 쫓는 사람 vs 정원 가꾸는 사람 -->
@@ -929,7 +930,8 @@
                 50% { transform: translateY(-3px); }
             }
         </style>
-        <div style="display: flex; gap: 60px; align-items: center; justify-content: center; margin-bottom: 20px;">
+        <!-- step 1: SVG 일러스트 -->
+        <div class="substep" data-step="1" style="display: flex; gap: 60px; align-items: center; justify-content: center; margin-bottom: 20px;">
             <!-- 왼쪽: 나비를 쫓는 사람 (애니메이션) -->
             <div style="text-align: center; opacity: 0.5;">
                 <svg width="220" height="200" viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1036,20 +1038,28 @@
             </div>
         </div>
 
-        <!-- 핵심 메시지 -->
-        <div style="text-align: center; max-width: 700px;">
-            <h2 style="font-size: 36px; color: var(--t-heading); font-weight: 900; line-height: 1.5; margin-bottom: 15px;">
+        <!-- step 2: 쫓는 게 아니라 -->
+        <div class="substep" data-step="2" style="text-align: center; max-width: 700px;">
+            <h2 style="font-size: 36px; color: var(--t-heading); font-weight: 900; line-height: 1.5; margin: 0;">
                 벌과 나비를 <span class="text-red">쫓는 게 아니라</span><br>
                 나의 <span class="text-gold">정원</span>을 제대로 가꿔서
             </h2>
-            <p style="font-size: 22px; color: var(--t-body); line-height: 1.6; margin-bottom: 10px;">벌과 나비가 스스로 올 수 있게.</p>
-            <p style="font-size: 18px; color: var(--t-muted); line-height: 1.6;">만약 오지 않더라도, 결국 그 아름다운 정원은 남을 수 있도록.</p>
         </div>
 
-        <!-- 슈퍼내츄럴 전환 -->
-        <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid var(--c-border-strong); text-align: center; width: 100%; max-width: 600px;">
-            <p style="font-size: 20px; color: var(--t-sub); margin-bottom: 10px;">올바른 기준을 확립하도록 돕는 곳</p>
-            <p style="font-size: 30px; font-weight: 900; color: var(--c-gold-bright); letter-spacing: 0.05em; margin: 0;">SUPERNATURAL</p>
+        <!-- step 3: 스스로 올 수 있게 -->
+        <div class="substep" data-step="3" style="text-align: center; max-width: 700px;">
+            <p style="font-size: 22px; color: var(--t-body); line-height: 1.6; margin-bottom: 10px;">벌과 나비가 스스로 올 수 있게.</p>
+            <p style="font-size: 18px; color: var(--t-muted); line-height: 1.6; margin: 0;">만약 오지 않더라도, 결국 그 아름다운 정원은 남을 수 있도록.</p>
+        </div>
+
+        <!-- step 4: 올바른 기준 -->
+        <div class="substep" data-step="4" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--c-border-strong); text-align: center; width: 100%; max-width: 600px;">
+            <p style="font-size: 22px; color: var(--t-sub); margin: 0;">올바른 기준을 확립하도록 돕는 곳</p>
+        </div>
+
+        <!-- step 5: SUPERNATURAL -->
+        <div class="substep" data-step="5" style="text-align: center;">
+            <p style="font-size: 36px; font-weight: 900; color: var(--c-gold-bright); letter-spacing: 0.05em; margin: 0;">SUPERNATURAL</p>
         </div>
     </div>
 </div>
@@ -1216,64 +1226,7 @@
     </div>
 </div>
 
-<!-- ━━━ 🎬 영상 세션 후 브릿지 화법 ━━━ -->
-<div class="slide-container" id="slide-video-bridge">
-    <div class="qa-layout animate-fade-up">
-        <p style="font-size: 26px; color: var(--t-body); font-weight: 500; margin-bottom: 30px;">방금 영상에서 보셨습니다.</p>
-        <h2 class="text-h1" style="line-height: 1.5; margin-bottom: 40px;">기준 없이 다 맞춰주는 건<br><span class="text-red">정원을 가꾸는 게 아니라</span><br>나비를 쫓는 겁니다.</h2>
-        <div style="border-top: 1px solid var(--c-border-strong); padding-top: 40px; width: 80%; text-align: center;">
-            <p style="font-size: 24px; color: var(--t-body); line-height: 1.7; margin-bottom: 30px;">오늘 여러분은 <strong style="color: var(--t-heading);">그 차이를 알게 됐습니다.</strong><br>이것만으로도 만원의 가치는 충분합니다.</p>
-            <p style="font-size: 30px; color: var(--c-gold-bright); font-weight: 800; margin: 0;">이제 중요한 건 — <span style="color: var(--c-red-bright);">'아는 것' 다음</span>입니다.</p>
-        </div>
-    </div>
-</div>
 
-<div class="slide-container" id="slide26">
-    <h2 class="slide-title animate-fade-up">프레임 테스트 돌파</h2>
-    <div class="qa-layout animate-fade-up" style="padding-top: 0;">
-        <h3 class="text-gold" style="font-size: 36px; margin-bottom: 50px; line-height: 1.4;">"오빠 재미없다~ 다른 데 가자."</h3>
-
-        <p style="margin-bottom: 50px; font-size: 22px; color: var(--t-body);">
-            잘못된 대응: "아 미안, 어디 갈까? 뭐 먹고 싶어?"<br>
-            <span style="font-size: 18px; color: var(--c-red-bright); font-weight: 700; margin-top: 10px; display: inline-block;">(사과 + 복종 = 매력 제로)</span>
-        </p>
-
-        <p style="color: var(--t-heading); font-size: 28px; font-weight: 800; margin-bottom: 15px; border-left: 4px solid var(--c-green); padding-left: 20px;">
-            올바른 대응: "내가 재밌는 사람이면, 여기가 왜 중요해."
-        </p>
-        <p><span style="font-size: 18px; color: var(--c-green); font-weight: 700;">(기준 유지 = 프레임 역전 및 끌림 폭발)</span></p>
-        <p style="margin-top: 30px; font-size: 20px; color: var(--c-gold); font-weight: 600;">이게 바로 '정원의 기준'입니다. 흔들리지 않는 기준이 나비를 부릅니다.</p>
-    </div>
-</div>
-
-<div class="slide-container" id="slide27">
-    <h2 class="slide-title animate-fade-up">이 자리에 앉아있던 사람들의 변화</h2>
-    <div class="content-area animate-fade-up delay-1" style="gap: 30px;">
-        <div style="display: flex; gap: 30px; width: 100%;">
-            <div class="tiled-box accent-red" style="flex: 1; padding: 35px 30px;">
-                <p style="font-size: 16px;  font-weight: 700; margin-bottom: 15px; letter-spacing: 0.05em;">CASE 1</p>
-                <h3 style="font-size: 24px; margin-bottom: 15px;">A씨 (32세) · 8년 무연애</h3>
-                <p class="text-red font-heavy" style="font-size: 18px; margin-bottom: 10px;">조건반사적 사과 → 여유로운 수용</p>
-                <p style="font-size: 16px;  margin: 0;">코칭 3개월 후 첫 연애 시작. 현재 6개월째 안정적 관계 주도 중.</p>
-            </div>
-            <div class="tiled-box accent-red" style="flex: 1; padding: 35px 30px;">
-                <p style="font-size: 16px;  font-weight: 700; margin-bottom: 15px; letter-spacing: 0.05em;">CASE 2</p>
-                <h3 style="font-size: 24px; margin-bottom: 15px;">B씨 (28세) · 소개팅 전패</h3>
-                <p class="text-red font-heavy" style="font-size: 18px; margin-bottom: 10px;">과잉 친절 → 기준 있는 대화</p>
-                <p style="font-size: 16px;  margin: 0;">코칭 2개월 차에 3번 차인 여자에게 재연락 받음. 현재 교제 4개월.</p>
-            </div>
-            <div class="tiled-box accent-red" style="flex: 1; padding: 35px 30px;">
-                <p style="font-size: 16px;  font-weight: 700; margin-bottom: 15px; letter-spacing: 0.05em;">CASE 3</p>
-                <h3 style="font-size: 24px; margin-bottom: 15px;">C씨 (35세) · 3번 이별 반복</h3>
-                <p class="text-red font-heavy" style="font-size: 18px; margin-bottom: 10px;">매달림 패턴 → 주도적 관계 설계</p>
-                <p style="font-size: 16px;  margin: 0;">"같은 실수를 반복하고 있었다는 걸 카톡 피드백 3일 만에 깨달았습니다."</p>
-            </div>
-        </div>
-        <div style="text-align: center; padding: 20px; background: var(--c-gold-glow); border-radius: 12px; border: 1px solid rgba(229, 200, 0, 0.2);">
-            <p class="text-gold font-heavy" style="font-size: 22px; margin: 0;">이 분들의 공통점은 하나입니다 — <strong>올바른 씨앗을 심을 줄 알았다는 것.</strong></p>
-        </div>
-    </div>
-</div>
 
 <div class="slide-container" id="slide28">
     <div class="section-title-layout animate-fade-up">
@@ -1305,47 +1258,7 @@
     </div>
 </div>
 
-<div class="slide-container" id="slide29">
-    <div class="content-area animate-fade-up" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 25px;">
-
-        <style>
-            /* slide29 전용 애니메이션 */
-            @keyframes s29_weedGrow {
-                0%, 100% { transform: scaleY(1) rotate(0deg); }
-                30% { transform: scaleY(1.1) rotate(3deg); }
-                70% { transform: scaleY(0.95) rotate(-2deg); }
-            }
-            @keyframes s29_confusedScratch {
-                0%, 100% { transform: rotate(0deg); }
-                25% { transform: rotate(-8deg); }
-                50% { transform: rotate(5deg); }
-                75% { transform: rotate(-3deg); }
-            }
-            @keyframes s29_questionFloat {
-                0% { opacity: 0; transform: translateY(4px); }
-                30% { opacity: 1; transform: translateY(0); }
-                80% { opacity: 1; transform: translateY(-6px); }
-                100% { opacity: 0; transform: translateY(-10px); }
-            }
-            @keyframes s29_blueprintDraw {
-                0% { stroke-dashoffset: 200; }
-                100% { stroke-dashoffset: 0; }
-            }
-            @keyframes s29_gardenBloom {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.04); }
-            }
-            @keyframes s29_sparkle {
-                0%, 100% { opacity: 0; transform: scale(0.5); }
-                50% { opacity: 1; transform: scale(1.2); }
-            }
-            @keyframes s29_labelPulse {
-                0%, 100% { opacity: 0.7; }
-                50% { opacity: 1; }
-            }
-        </style>
-
-        <h2 class="slide-title" style="margin-bottom: 10px;">여러분의 정원, 어떤 설계도를 그리시겠습니까?</h2>
+<div style="display: none;">
 
         <div style="display: flex; gap: 50px; align-items: flex-start; justify-content: center;">
 
