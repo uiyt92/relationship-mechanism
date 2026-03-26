@@ -634,20 +634,20 @@
                     <p style="font-size: 11px; color: var(--c-gold); margin: 4px 0 0;">서브 단계: 해소</p>
                 </div>
             </div>
-            <div class="substep" data-step="2" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
+            <div class="substep" data-step="4" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
 
             <!-- 2단계 -->
-            <div class="substep stage-node" data-step="3" id="sn2" style="flex: 1; text-align: center;">
+            <div class="substep stage-node" data-step="4" id="sn2" style="flex: 1; text-align: center;">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                     <div class="stage-circle">2</div>
                     <h3 style="font-size: 18px; margin: 0; color: var(--t-heading);">정보성 질문</h3>
                     <p style="font-size: 13px; color: var(--t-muted); margin: 0;">가치 탐색 단계</p>
                 </div>
             </div>
-            <div class="substep" data-step="3" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
+            <div class="substep" data-step="6" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
 
             <!-- 3단계 -->
-            <div class="substep stage-node" data-step="5" id="sn3" style="flex: 1; text-align: center;">
+            <div class="substep stage-node" data-step="6" id="sn3" style="flex: 1; text-align: center;">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                     <div class="stage-circle" style="background: rgba(255,0,76,0.15); border-color: var(--c-red-bright); color: var(--c-red-bright);">3</div>
                     <h3 class="text-red" style="font-size: 18px; margin: 0;">알파 VS 베타</h3>
@@ -657,7 +657,7 @@
             <div class="substep" data-step="13" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
 
             <!-- 4단계 -->
-            <div class="substep stage-node" data-step="14" id="sn4" style="flex: 1; text-align: center;">
+            <div class="substep stage-node" data-step="13" id="sn4" style="flex: 1; text-align: center;">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                     <div class="stage-circle" style="background: var(--c-gold-glow); border-color: var(--c-gold); color: var(--c-gold-bright);">4</div>
                     <h3 class="text-gold" style="font-size: 18px; margin: 0;">성적 가치 판단</h3>
@@ -1797,7 +1797,7 @@ function showSubsteps(slide, upTo) {
     });
 
     // 스테이지 노드 하이라이트
-    const stageMap = { 'sn1': [1,2], 'sn2': [3,4], 'sn3': [5,6,7,8], 'sn4': [9,10] };
+    const stageMap = { 'sn1': [1,2,3], 'sn2': [4,5], 'sn3': [6,7,8,9,10,11,12], 'sn4': [13,14] };
     Object.entries(stageMap).forEach(([id, steps]) => {
         const node = document.getElementById(id);
         if (!node) return;
