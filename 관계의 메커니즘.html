@@ -838,7 +838,7 @@
 </div>
 
 <!-- ━━━ 관계의 메커니즘 4단계 (가로 플로우 + 서브스텝) ━━━ -->
-<div class="slide-container" id="slide22" data-substeps="14">
+<div class="slide-container" id="slide22" data-substeps="15">
     <h2 class="slide-title animate-fade-up">관계의 메커니즘 4단계</h2>
     <div class="content-area" style="justify-content: flex-start; gap: 0; padding-top: 10px;">
 
@@ -874,10 +874,10 @@
                     <p style="font-size: 13px; color: var(--t-muted); margin: 0;">"도파민과 세로토닌 중 어떤 것을 줄 수 있는 남자인가?"</p>
                 </div>
             </div>
-            <div class="substep" data-step="13" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
+            <div class="substep" data-step="14" style="flex-shrink: 0; display: flex; align-items: center;"><i class="fa-solid fa-arrow-right" style="font-size: 20px; color: var(--t-muted);"></i></div>
 
             <!-- 4단계 -->
-            <div class="substep stage-node" data-step="13" id="sn4" style="flex: 1; text-align: center;">
+            <div class="substep stage-node" data-step="14" id="sn4" style="flex: 1; text-align: center;">
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
                     <div class="stage-circle" style="background: var(--c-gold-glow); border-color: var(--c-gold); color: var(--c-gold-bright);">4</div>
                     <h3 class="text-gold" style="font-size: 18px; margin: 0;">성적 가치 판단</h3>
@@ -963,59 +963,61 @@
                 </div>
             </div>
 
-            <!-- step 7: X밥 테스트 -->
+            <!-- step 7: X밥 테스트 (텍스트) -->
             <div class="substep detail-panel" data-step="7">
-                <div style="display: flex; gap: 40px; height: 100%; align-items: center;">
-                    <div style="flex: 1;">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 24px;">
-                            <i class="fa-solid fa-flask text-red" style="font-size: 28px;"></i>
-                            <h3 class="text-red" style="font-size: 32px; margin: 0;">X밥 테스트</h3>
-                        </div>
-                        <p style="font-size: 20px; color: var(--t-body); line-height: 1.7; margin-bottom: 20px;">대부분의 남성이 이 단계에서<br><strong style="color: var(--c-red);">남성성을 잃고</strong> 친구가 되거나, 호기심을 잃게 됩니다.</p>
-                        <p style="font-size: 18px; color: var(--t-sub); margin-bottom: 20px;">여자는 <strong style="color: var(--t-heading);">"이 남자한테 이렇게 해도 되는지"</strong> 확인합니다.</p>
-                        <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
-                            <span style="background: rgba(255,0,76,0.08); padding: 10px 20px; border-radius: 30px; font-size: 16px; color: var(--t-heading); border: 1px solid rgba(255,0,76,0.15);">답장을 일부러 늦게 한다</span>
-                            <span style="background: rgba(255,0,76,0.08); padding: 10px 20px; border-radius: 30px; font-size: 16px; color: var(--t-heading); border: 1px solid rgba(255,0,76,0.15);">약속 시간에 늦고도 미안해하지 않는다</span>
-                            <span style="background: rgba(255,0,76,0.08); padding: 10px 20px; border-radius: 30px; font-size: 16px; color: var(--t-heading); border: 1px solid rgba(255,0,76,0.15);">만났는데 핸드폰만 한다 · 퉁명스럽게 대한다</span>
-                        </div>
+                <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-flask text-red" style="font-size: 28px;"></i>
+                        <h3 class="text-red" style="font-size: 32px; margin: 0;">X밥 테스트</h3>
                     </div>
-                    <div style="flex: 0 0 340px; display: flex; flex-direction: column; gap: 16px;">
-                        <!-- 가치 그래프: 두 갈래 -->
-                        <div style="background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 20px; padding: 30px; position: relative; height: 240px;">
-                            <p style="font-size: 12px; color: var(--t-muted); position: absolute; top: 12px; left: 16px; letter-spacing: 0.1em;">가치</p>
-                            <!-- Y축 -->
-                            <div style="position: absolute; left: 40px; top: 30px; bottom: 30px; width: 1px; background: var(--c-border-strong);"></div>
-                            <!-- X축 -->
-                            <div style="position: absolute; left: 40px; right: 20px; bottom: 70px; height: 1px; background: var(--c-border-strong); opacity: 0.3;"></div>
-                            <!-- 시작점 -->
-                            <div style="position: absolute; left: 90px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; background: var(--c-gold); border-radius: 50%; z-index: 2;"></div>
-                            <p style="position: absolute; left: 74px; top: calc(50% + 14px); font-size: 11px; color: var(--c-gold);">시작점</p>
-                            <svg style="position: absolute; left: 97px; top: 30px; width: 200px; height: 180px;" viewBox="0 0 200 180">
-                                <!-- 통과: 위로 올라감 (초록) -->
-                                <path d="M0,90 C50,90 80,30 160,20" stroke="#00e676" stroke-width="2.5" fill="none"/>
-                                <!-- 실패: 아래로 내려감 (빨강) -->
-                                <path d="M0,90 C50,90 80,140 160,155" stroke="var(--c-red)" stroke-width="2.5" fill="none" stroke-dasharray="6,4"/>
-                            </svg>
-                            <!-- 통과 끝점 -->
-                            <div style="position: absolute; right: 28px; top: 42px; width: 12px; height: 12px; background: #00e676; border-radius: 50%;"></div>
-                            <p style="position: absolute; right: 10px; top: 28px; font-size: 11px; color: #00e676; font-weight: 700;">통과</p>
-                            <!-- 실패 끝점 -->
-                            <div style="position: absolute; right: 28px; bottom: 32px; width: 12px; height: 12px; background: var(--c-red); border-radius: 50%;"></div>
-                            <p style="position: absolute; right: 14px; bottom: 18px; font-size: 11px; color: var(--c-red); font-weight: 700;">실패</p>
-                            <!-- 테스트 구간 라벨 -->
-                            <p style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 8px; font-size: 11px; color: var(--t-muted);">테스트 구간</p>
-                        </div>
-                        <!-- 핵심 인사이트 -->
-                        <div style="background: rgba(0,230,118,0.06); border: 1px solid var(--c-green-border); border-radius: 14px; padding: 18px 22px;">
-                            <p style="font-size: 14px; color: var(--c-green); font-weight: 700; margin-bottom: 8px;">가치가 올라가는 순간</p>
-                            <p style="font-size: 16px; color: var(--t-body); margin: 0;">행동을 지적하는 게 아니라,<br><strong style="color: var(--t-heading);">관계를 가지고 딜</strong>을 칠 때.</p>
-                        </div>
+                    <p style="font-size: 20px; color: var(--t-body); line-height: 1.7; margin-bottom: 20px;">대부분의 남성이 이 단계에서<br><strong style="color: var(--c-red);">남성성을 잃고</strong> 친구가 되거나, 호기심을 잃게 됩니다.</p>
+                    <p style="font-size: 18px; color: var(--t-sub); margin-bottom: 20px;">여자는 <strong style="color: var(--t-heading);">"이 남자한테 이렇게 해도 되는지"</strong> 확인합니다.</p>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <span style="background: rgba(255,0,76,0.08); padding: 10px 20px; border-radius: 30px; font-size: 16px; color: var(--t-heading); border: 1px solid rgba(255,0,76,0.15);">답장을 일부러 늦게 한다</span>
+                        <span style="background: rgba(255,0,76,0.08); padding: 10px 20px; border-radius: 30px; font-size: 16px; color: var(--t-heading); border: 1px solid rgba(255,0,76,0.15);">약속 시간에 늦고도 미안해하지 않는다</span>
+                        <span style="background: rgba(255,0,76,0.08); padding: 10px 20px; border-radius: 30px; font-size: 16px; color: var(--t-heading); border: 1px solid rgba(255,0,76,0.15);">만났는데 핸드폰만 한다 · 퉁명스럽게 대한다</span>
                     </div>
                 </div>
             </div>
 
-            <!-- step 8: 핵심 대사 -->
+            <!-- step 8: 가치 테스트 구간 그래프 -->
             <div class="substep detail-panel" data-step="8">
+                <div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 24px;">
+                    <!-- 가치 그래프: 두 갈래 (크게) -->
+                    <div style="background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 20px; padding: 40px; position: relative; width: 100%; max-width: 700px; height: 380px;">
+                        <p style="font-size: 14px; color: var(--t-muted); position: absolute; top: 16px; left: 20px; letter-spacing: 0.1em;">가치</p>
+                        <!-- Y축 -->
+                        <div style="position: absolute; left: 50px; top: 40px; bottom: 40px; width: 1px; background: var(--c-border-strong);"></div>
+                        <!-- X축 -->
+                        <div style="position: absolute; left: 50px; right: 30px; bottom: 90px; height: 1px; background: var(--c-border-strong); opacity: 0.3;"></div>
+                        <!-- 시작점 -->
+                        <div style="position: absolute; left: 120px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; background: var(--c-gold); border-radius: 50%; z-index: 2;"></div>
+                        <p style="position: absolute; left: 100px; top: calc(50% + 18px); font-size: 13px; color: var(--c-gold);">시작점</p>
+                        <svg style="position: absolute; left: 129px; top: 40px; width: calc(100% - 190px); height: 300px;" viewBox="0 0 200 180">
+                            <!-- 통과: 위로 올라감 (초록) -->
+                            <path d="M0,90 C50,90 80,30 160,20" stroke="#00e676" stroke-width="3" fill="none"/>
+                            <!-- 실패: 아래로 내려감 (빨강) -->
+                            <path d="M0,90 C50,90 80,140 160,155" stroke="var(--c-red)" stroke-width="3" fill="none" stroke-dasharray="6,4"/>
+                        </svg>
+                        <!-- 통과 끝점 -->
+                        <div style="position: absolute; right: 40px; top: 65px; width: 16px; height: 16px; background: #00e676; border-radius: 50%;"></div>
+                        <p style="position: absolute; right: 20px; top: 48px; font-size: 14px; color: #00e676; font-weight: 700;">통과</p>
+                        <!-- 실패 끝점 -->
+                        <div style="position: absolute; right: 40px; bottom: 55px; width: 16px; height: 16px; background: var(--c-red); border-radius: 50%;"></div>
+                        <p style="position: absolute; right: 20px; bottom: 38px; font-size: 14px; color: var(--c-red); font-weight: 700;">실패</p>
+                        <!-- 테스트 구간 라벨 -->
+                        <p style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; font-size: 14px; color: var(--t-muted); font-weight: 600;">가치 테스트 구간</p>
+                    </div>
+                    <!-- 핵심 인사이트 -->
+                    <div style="background: rgba(0,230,118,0.06); border: 1px solid var(--c-green-border); border-radius: 14px; padding: 22px 30px; max-width: 700px; width: 100%;">
+                        <p style="font-size: 16px; color: var(--c-green); font-weight: 700; margin-bottom: 8px;">가치가 올라가는 순간</p>
+                        <p style="font-size: 18px; color: var(--t-body); margin: 0;">행동을 지적하는 게 아니라, <strong style="color: var(--t-heading);">관계를 가지고 딜</strong>을 칠 때.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- step 9: 핵심 대사 -->
+            <div class="substep detail-panel" data-step="9">
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
                     <p style="font-size: 20px; color: var(--t-muted); margin-bottom: 30px;">테스트를 통과하는 한 마디</p>
                     <div style="background: var(--c-gold-glow); border: 2px solid rgba(254,229,0,0.4); border-radius: 24px; padding: 50px 60px;">
@@ -1025,8 +1027,8 @@
                 </div>
             </div>
 
-            <!-- step 9: 판단 구간 마무리 -->
-            <div class="substep detail-panel" data-step="9">
+            <!-- step 10: 판단 구간 마무리 -->
+            <div class="substep detail-panel" data-step="10">
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
                     <div style="border: 2px solid var(--c-border-strong); border-radius: 20px; padding: 50px 70px;">
                         <p style="font-size: 34px; color: var(--t-heading); font-weight: 900; line-height: 1.5; margin: 0;">여기까지가<br>여자가 당신에 대해<br><span class="text-red">판단하는 구간</span>입니다.</p>
@@ -1034,8 +1036,8 @@
                 </div>
             </div>
 
-            <!-- step 10: 분기 -->
-            <div class="substep detail-panel" data-step="10">
+            <!-- step 11: 분기 -->
+            <div class="substep detail-panel" data-step="11">
                 <div style="display: flex; gap: 30px; height: 100%; align-items: stretch;">
                     <!-- 베타 -->
                     <div style="flex: 1; background: var(--c-surface-2); border: 1px solid var(--c-border-strong); border-radius: 20px; padding: 35px 30px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;">
@@ -1061,8 +1063,8 @@
                 </div>
             </div>
 
-            <!-- step 11: 알파 → 정보성 질문 상세 -->
-            <div class="substep detail-panel" data-step="11">
+            <!-- step 12: 알파 → 정보성 질문 상세 -->
+            <div class="substep detail-panel" data-step="12">
                 <div style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
                     <p style="font-size: 20px; color: var(--t-sub); margin-bottom: 25px;">알파로 판정되면, 여자는 <strong style="color: var(--t-heading);">남녀 관계에 대한 질문</strong>을 던진다:</p>
                     <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 35px;">
@@ -1080,8 +1082,8 @@
                 </div>
             </div>
 
-            <!-- step 12: 반박제거 -->
-            <div class="substep detail-panel" data-step="12">
+            <!-- step 13: 반박제거 -->
+            <div class="substep detail-panel" data-step="13">
                 <div style="display: flex; gap: 40px; height: 100%; align-items: center;">
                     <div style="flex: 1;">
                         <p style="font-size: 16px; color: var(--t-muted); margin-bottom: 12px; letter-spacing: 0.05em;">여기서 잠깐 —</p>
@@ -1113,8 +1115,8 @@
                 </div>
             </div>
 
-            <!-- step 14: 4단계 디테일 -->
-            <div class="substep detail-panel" data-step="14">
+            <!-- step 15: 4단계 디테일 -->
+            <div class="substep detail-panel" data-step="15">
                 <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%; text-align: center;">
                     <div style="font-size: 100px; font-weight: 900; font-family: var(--font-en); color: var(--c-gold-bright); line-height: 1; margin-bottom: 20px; text-shadow: 0 0 40px var(--c-gold-glow);">4</div>
                     <h3 class="text-gold" style="font-size: 36px; margin-bottom: 20px;">성적 가치 판단</h3>
@@ -2017,7 +2019,7 @@ function showSubsteps(slide, upTo) {
     });
 
     // 스테이지 노드 하이라이트
-    const stageMap = { 'sn1': [1,2,3], 'sn2': [4,5], 'sn3': [6,7,8,9,10,11,12], 'sn4': [13,14] };
+    const stageMap = { 'sn1': [1,2,3], 'sn2': [4,5], 'sn3': [6,7,8,9,10,11,12,13], 'sn4': [14,15] };
     Object.entries(stageMap).forEach(([id, steps]) => {
         const node = document.getElementById(id);
         if (!node) return;
