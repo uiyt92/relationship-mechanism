@@ -708,6 +708,54 @@
     </div>
 </div>
 
+<!-- ━━━ 슬라이드 15c: 호기심/신뢰/가치 브랜드 그래프 ━━━ -->
+<div class="slide-container" id="slide15c">
+    <div class="content-area animate-fade-up" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px;">
+        <!-- 상단 키워드 -->
+        <div style="display: flex; gap: 24px; margin-bottom: 10px;">
+            <span style="font-size: 22px; font-weight: 800; color: var(--c-red);">호기심</span>
+            <span style="font-size: 22px; font-weight: 800; color: #4A9EFF;">신뢰</span>
+            <span style="font-size: 22px; font-weight: 800; color: var(--c-gold-bright);">가치</span>
+        </div>
+        <!-- 그래프 -->
+        <div style="position: relative; width: 100%; max-width: 900px; height: 420px; background: var(--c-surface-1); border: 1px solid var(--c-border-strong); border-radius: 20px; overflow: hidden; padding: 20px;">
+            <!-- Y축 라벨 -->
+            <p style="position: absolute; left: 8px; top: 50%; transform: translateY(-50%) rotate(-90deg); font-size: 13px; color: var(--t-muted); letter-spacing: 0.1em; white-space: nowrap;">가치 ↑</p>
+            <!-- X축 라벨 -->
+            <p style="position: absolute; bottom: 6px; right: 20px; font-size: 13px; color: var(--t-muted); letter-spacing: 0.1em;">호기심 + 신뢰 →</p>
+            <!-- 축 -->
+            <div style="position: absolute; left: 50px; top: 20px; bottom: 50px; width: 1px; background: var(--c-border-strong);"></div>
+            <div style="position: absolute; left: 50px; bottom: 50px; right: 20px; height: 1px; background: var(--c-border-strong);"></div>
+            <!-- 우상향 트렌드 라인 -->
+            <svg style="position: absolute; left: 50px; top: 20px; width: calc(100% - 70px); height: calc(100% - 70px);" viewBox="0 0 500 350">
+                <!-- 트렌드 라인 (점선) -->
+                <path d="M40,300 C120,280 200,200 300,130 Q380,80 460,30" stroke="rgba(254,229,0,0.3)" stroke-width="2" fill="none" stroke-dasharray="8,6"/>
+                <!-- 샤오미 -->
+                <circle cx="70" cy="285" r="28" fill="rgba(255,0,76,0.08)" stroke="var(--c-red)" stroke-width="1.5"/>
+                <circle cx="70" cy="285" r="6" fill="var(--c-red)"/>
+                <text x="70" y="328" text-anchor="middle" fill="var(--c-red)" font-size="14" font-weight="700">샤오미</text>
+                <!-- LG -->
+                <circle cx="185" cy="220" r="32" fill="rgba(255,255,255,0.04)" stroke="var(--c-border-strong)" stroke-width="1.5"/>
+                <circle cx="185" cy="220" r="6" fill="var(--t-muted)"/>
+                <text x="185" y="263" text-anchor="middle" fill="var(--t-muted)" font-size="14" font-weight="700">LG</text>
+                <!-- 갤럭시 -->
+                <circle cx="310" cy="130" r="36" fill="rgba(74,158,255,0.06)" stroke="#4A9EFF" stroke-width="1.5"/>
+                <circle cx="310" cy="130" r="6" fill="#4A9EFF"/>
+                <text x="310" y="177" text-anchor="middle" fill="#4A9EFF" font-size="14" font-weight="700">갤럭시</text>
+                <!-- 애플 -->
+                <circle cx="440" cy="40" r="40" fill="rgba(254,229,0,0.06)" stroke="var(--c-gold)" stroke-width="2"/>
+                <circle cx="440" cy="40" r="7" fill="var(--c-gold-bright)"/>
+                <text x="440" y="90" text-anchor="middle" fill="var(--c-gold-bright)" font-size="15" font-weight="800">애플</text>
+                <!-- 화살표 표시 -->
+                <path d="M95,270 L160,235" stroke="rgba(255,255,255,0.15)" stroke-width="1" marker-end="none"/>
+                <path d="M215,205 L280,150" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <path d="M345,115 L410,60" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            </svg>
+        </div>
+        <p style="font-size: 20px; color: var(--t-sub); text-align: center; margin: 0;"><span class="text-red">호기심</span>과 <span style="color: #4A9EFF;">신뢰</span>가 쌓일수록, <span class="text-gold">가치</span>는 올라간다.</p>
+    </div>
+</div>
+
 <div class="slide-container" id="slide16">
     <div class="qa-layout animate-fade-up">
         <h2 class="big-impact-text">연애는 <span class="text-red">가치전쟁</span>이다.</h2>
@@ -2058,7 +2106,7 @@ const partMap = {
     'slide5': '02', 'slide6': '02',
     'slide7': '03', 'slide8': '03', 'slide10': '03',
     'slide11': '03', 'slide12': '03', 'slide13': '03', 'slide13-2': '03',
-    'slide14': '03', 'slide15': '03', 'slide15b': '03',
+    'slide14': '03', 'slide15': '03', 'slide15b': '03', 'slide15c': '03',
     'slide16': '04', 'slide22': '04',
     'slide-calibration': '05', 'slide-cal-1': '05', 'slide-cal-2': '05', 'slide-cal-3': '05',
     'slide20': '06', 'slide-katalk': '06', 'slide-katalk-bridge': '06', 'slide21': '06', 'slide25': '06',
