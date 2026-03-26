@@ -484,15 +484,18 @@
 </div>
 
 
-<div class="slide-container" id="slide8">
-    <div class="qa-layout animate-fade-up">
-        <h2 class="big-impact-text">마케팅?</h2>
-    </div>
-</div>
-
-<div class="slide-container" id="slide9">
-    <div class="qa-layout animate-fade-up">
-        <h2 class="big-impact-text text-red">광고?</h2>
+<div class="slide-container" id="slide8" data-substeps="3">
+    <div class="qa-layout">
+        <div class="substep" data-step="1" style="position: absolute; transition: all 0.6s cubic-bezier(0.16,1,0.3,1);">
+            <h2 class="big-impact-text">마케팅?</h2>
+        </div>
+        <div class="substep" data-step="2" style="position: absolute; transition: all 0.6s cubic-bezier(0.16,1,0.3,1);">
+            <h2 class="big-impact-text text-red">광고?</h2>
+        </div>
+        <div class="substep" data-step="3" style="position: absolute; transition: all 0.6s cubic-bezier(0.16,1,0.3,1);">
+            <p style="font-size: 24px; color: var(--t-muted); margin-bottom: 20px;">아니요.</p>
+            <h2 class="big-impact-text" style="font-size: 80px;">더 <span class="text-gold">근본적인</span> 것.</h2>
+        </div>
     </div>
 </div>
 
@@ -1512,61 +1515,59 @@
         <!-- 하단 메시지 -->
         <div style="text-align: center; padding: 25px 50px; border: 1px solid var(--c-border-strong); border-radius: 12px; background: var(--c-surface-1);">
             <p class="text-gold font-heavy" style="font-size: 22px; margin-bottom: 10px;">씨앗부터 정원 완성까지 — 모든 도구가 한 곳에.</p>
-            <p style="font-size: 15px; color: var(--t-muted); margin: 0;"><i class="fa-solid fa-users" style="margin-right: 8px;"></i>현재 멤버 200명 이상 활동 중</p>
+            <p style="font-size: 15px; color: var(--t-muted); margin: 0;"><i class="fa-solid fa-users" style="margin-right: 8px;"></i>현재 멤버 210명+ 활동 중</p>
         </div>
     </div>
 </div>
 
-<!-- S30-proof: 강의 카탈로그 -->
+<!-- S30-proof: 강의 카탈로그 (3대 카테고리) -->
 <div class="slide-container" id="slide30-proof">
     <h2 class="slide-title animate-fade-up">멤버십 강의 라인업</h2>
-    <p class="animate-fade-up delay-1" style="font-size: 17px; color: var(--t-muted); text-align: center; margin-bottom: 8px;">현재 제공 중인 핵심 커리큘럼</p>
-    <div class="content-area animate-fade-up delay-2" style="gap: 0; justify-content: center; padding: 16px 10px;">
-        <div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-            <div style="background: linear-gradient(135deg, rgba(229,200,0,0.14), rgba(229,200,0,0.03)); border: 1px solid rgba(229,200,0,0.3); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-crosshairs text-gold" style="font-size: 22px;"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">칼리브레이션</span>
+    <p class="animate-fade-up delay-1" style="font-size: 17px; color: var(--t-muted); text-align: center; margin-bottom: 12px;">여러분의 정원에 필요한 씨앗, 전부 여기 있습니다.</p>
+    <div class="content-area animate-fade-up delay-2" style="gap: 20px; justify-content: center; padding: 10px 10px;">
+        <!-- 카테고리 1: 마인드셋 -->
+        <div style="width: 100%; background: var(--c-surface-1); border: 1px solid rgba(229,200,0,0.3); border-radius: 16px; padding: 28px 24px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                <i class="fa-solid fa-brain text-gold" style="font-size: 24px;"></i>
+                <h3 style="font-size: 22px; margin: 0; color: var(--c-gold-bright);">마인드셋 & 정체성</h3>
+                <span style="font-size: 13px; color: var(--t-muted); margin-left: auto;">"어떤 씨앗을 심을 것인가"</span>
             </div>
-            <div style="background: linear-gradient(135deg, rgba(255,59,48,0.14), rgba(255,59,48,0.03)); border: 1px solid rgba(255,59,48,0.3); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-crown text-red" style="font-size: 22px;"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">알파 마인드</span>
-            </div>
-            <div style="background: linear-gradient(135deg, rgba(0,230,118,0.12), rgba(0,230,118,0.02)); border: 1px solid rgba(0,230,118,0.25); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-users" style="font-size: 22px; color: var(--c-green);"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">사회적 가치</span>
-            </div>
-            <div style="background: linear-gradient(135deg, rgba(229,200,0,0.14), rgba(229,200,0,0.03)); border: 1px solid rgba(229,200,0,0.3); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-fire text-gold" style="font-size: 22px;"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">남자의 매력</span>
-            </div>
-            <div style="background: linear-gradient(135deg, rgba(255,59,48,0.14), rgba(255,59,48,0.03)); border: 1px solid rgba(255,59,48,0.3); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-heart text-red" style="font-size: 22px;"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">헌신과 사랑</span>
-            </div>
-            <div style="background: linear-gradient(135deg, rgba(168,85,247,0.14), rgba(168,85,247,0.03)); border: 1px solid rgba(168,85,247,0.3); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-moon" style="font-size: 22px; color: #a855f7;"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">방중술</span>
-            </div>
-            <div style="background: linear-gradient(135deg, rgba(0,230,118,0.12), rgba(0,230,118,0.02)); border: 1px solid rgba(0,230,118,0.25); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-masks-theater" style="font-size: 22px; color: var(--c-green);"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">정체성 게임</span>
-            </div>
-            <div style="background: linear-gradient(135deg, rgba(229,200,0,0.14), rgba(229,200,0,0.03)); border: 1px solid rgba(229,200,0,0.3); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-bullseye text-gold" style="font-size: 22px;"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">어프로치</span>
-            </div>
-            <div style="background: linear-gradient(135deg, rgba(168,85,247,0.14), rgba(168,85,247,0.03)); border: 1px solid rgba(168,85,247,0.3); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-spa" style="font-size: 22px; color: #a855f7;"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">명상법</span>
-            </div>
-            <div style="background: linear-gradient(135deg, rgba(255,59,48,0.14), rgba(255,59,48,0.03)); border: 1px solid rgba(255,59,48,0.3); border-radius: 14px; padding: 22px 18px; display: flex; align-items: center; gap: 14px;">
-                <i class="fa-solid fa-shield-halved text-red" style="font-size: 22px;"></i>
-                <span style="font-size: 19px; font-weight: 700; color: var(--t-heading);">영웅적 서사</span>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <span style="background: rgba(229,200,0,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(229,200,0,0.15);">알파 마인드</span>
+                <span style="background: rgba(229,200,0,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(229,200,0,0.15);">영웅적 서사</span>
+                <span style="background: rgba(229,200,0,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(229,200,0,0.15);">정체성 게임</span>
+                <span style="background: rgba(229,200,0,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(229,200,0,0.15);">명상법</span>
             </div>
         </div>
-        <!-- +40개 FOMO -->
-        <div style="margin-top: 18px; text-align: center;">
-            <span style="font-size: 22px; font-weight: 800; color: var(--c-gold-bright); letter-spacing: 1px;">+ 40개 이상의 강의</span>
+        <!-- 카테고리 2: 실전 스킬 -->
+        <div style="width: 100%; background: var(--c-surface-1); border: 1px solid rgba(255,59,48,0.3); border-radius: 16px; padding: 28px 24px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                <i class="fa-solid fa-crosshairs text-red" style="font-size: 24px;"></i>
+                <h3 style="font-size: 22px; margin: 0; color: var(--c-red-bright);">실전 스킬</h3>
+                <span style="font-size: 13px; color: var(--t-muted); margin-left: auto;">"정원을 가꾸는 기술"</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <span style="background: rgba(255,59,48,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(255,59,48,0.15);">칼리브레이션</span>
+                <span style="background: rgba(255,59,48,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(255,59,48,0.15);">어프로치</span>
+                <span style="background: rgba(255,59,48,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(255,59,48,0.15);">헌신과 사랑</span>
+                <span style="background: rgba(255,59,48,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(255,59,48,0.15);">방중술</span>
+            </div>
+        </div>
+        <!-- 카테고리 3: 가치 구축 -->
+        <div style="width: 100%; background: var(--c-surface-1); border: 1px solid rgba(0,230,118,0.25); border-radius: 16px; padding: 28px 24px;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                <i class="fa-solid fa-seedling" style="font-size: 24px; color: var(--c-green);"></i>
+                <h3 style="font-size: 22px; margin: 0; color: var(--c-green);">가치 구축</h3>
+                <span style="font-size: 13px; color: var(--t-muted); margin-left: auto;">"나비가 찾아오는 정원 만들기"</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <span style="background: rgba(0,230,118,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(0,230,118,0.15);">사회적 가치</span>
+                <span style="background: rgba(0,230,118,0.08); padding: 10px 18px; border-radius: 30px; font-size: 16px; color: var(--t-heading); font-weight: 600; border: 1px solid rgba(0,230,118,0.15);">남자의 매력</span>
+            </div>
+        </div>
+        <!-- +50개 FOMO -->
+        <div style="text-align: center; padding: 16px; background: var(--c-gold-glow); border-radius: 12px; border: 1px solid rgba(229,200,0,0.2);">
+            <span style="font-size: 22px; font-weight: 800; color: var(--c-gold-bright); letter-spacing: 1px;">+ 50개 이상의 강의가 계속 추가됩니다</span>
         </div>
     </div>
 </div>
@@ -1585,7 +1586,7 @@
 <!-- S30-meetup: 분기별 대규모 간담회 -->
 <div class="slide-container" id="slide30-meetup">
     <h2 class="slide-title animate-fade-up" style="margin-bottom: 10px; font-size: 28px;">분기별 대규모 간담회</h2>
-    <p class="animate-fade-up delay-1" style="color: var(--t-caption); font-size: 16px; margin-bottom: 12px;">멤버십 회원 전용 오프라인 모임</p>
+    <p class="animate-fade-up delay-1" style="color: var(--t-caption); font-size: 16px; margin-bottom: 12px;">멤버십 회원 전용 오프라인 모임 · <span class="text-gold font-heavy">100명+ 참석</span></p>
     <div class="animate-fade-up delay-2" style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; width: 100%; flex: 1; min-height: 0; padding: 0 16px 16px;">
         <div style="border-radius: 14px; overflow: hidden; min-height: 0;"><img src="images/meetup1.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
         <div style="border-radius: 14px; overflow: hidden; min-height: 0;"><img src="images/meetup2.jpg" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
@@ -1595,15 +1596,15 @@
 </div>
 
 <!-- S31-감정 CTA: 질문 → 침묵 → 결단 -->
-<div class="slide-container" id="slide31">
+<div class="slide-container" id="slide31" data-substeps="4">
     <div class="qa-layout animate-fade-up">
         <h2 class="text-h1" style="line-height: 1.6; margin-bottom: 50px;">한 가지만 상상해보세요.</h2>
         <h2 class="text-display" style="line-height: 1.4; margin-bottom: 50px;">3개월 뒤, 여러분의 정원에<br><span class="text-gold">첫 번째 꽃</span>이 피는 순간.</h2>
         <div style="border-top: 1px solid var(--c-border-strong); padding-top: 40px; width: 70%; text-align: center;">
-            <p style="font-size: 22px; color: var(--t-body); line-height: 1.8; margin-bottom: 15px;">그녀가 테스트를 걸었을 때 —<br>흔들리지 않고 웃으며 대응하는 자신.</p>
-            <p style="font-size: 22px; color: var(--t-body); line-height: 1.8; margin-bottom: 15px;">읽씹당했을 때 —<br>불안 없이 여유롭게 기다리는 자신.</p>
-            <p style="font-size: 22px; color: var(--t-body); line-height: 1.8; margin-bottom: 40px;">그녀가 다시 먼저 연락했을 때 —<br>담담하게 웃는 자신.</p>
-            <p style="font-size: 26px; color: var(--t-heading); font-weight: 800; margin: 0;"><span class="text-gold">그 자신</span>은, 생각보다 가까이 있습니다.</p>
+            <p class="substep" data-step="1" style="font-size: 22px; color: var(--t-body); line-height: 1.8; margin-bottom: 15px;">그녀가 테스트를 걸었을 때 —<br>흔들리지 않고 웃으며 대응하는 자신.</p>
+            <p class="substep" data-step="2" style="font-size: 22px; color: var(--t-body); line-height: 1.8; margin-bottom: 15px;">읽씹당했을 때 —<br>불안 없이 여유롭게 기다리는 자신.</p>
+            <p class="substep" data-step="3" style="font-size: 22px; color: var(--t-body); line-height: 1.8; margin-bottom: 40px;">그녀가 다시 먼저 연락했을 때 —<br>담담하게 웃는 자신.</p>
+            <p class="substep" data-step="4" style="font-size: 26px; color: var(--t-heading); font-weight: 800; margin: 0;"><span class="text-gold">그 자신</span>은, 생각보다 가까이 있습니다.</p>
         </div>
     </div>
 </div>
@@ -1659,6 +1660,7 @@
             <i class="fa-solid fa-arrow-right" style="font-size: 16px; color: var(--c-red-bright); margin: 0 12px;"></i>
             <span style="font-size: 36px; color: var(--c-red-bright); font-weight: 900;">150,000원</span>
         </div>
+        <p style="font-size: 16px; color: var(--t-sub); margin-bottom: 8px;">하루 <strong style="color: var(--c-gold-bright);">커피 한 잔 가격</strong>으로 정원 설계를 시작합니다.</p>
         <p class="text-red font-heavy" style="font-size: 18px; margin-bottom: 5px;">당일 가입 한정 — 특별 할인가 적용</p>
         <p style="font-size: 18px; color: var(--t-body); margin-bottom: 10px;">정원을 가꾸기로 결심한 날이, <strong style="color: var(--t-heading);">가장 좋은 시작점</strong>입니다.</p>
         <div class="contact-info">
@@ -1872,7 +1874,7 @@ document.addEventListener('keydown', (e) => {
 const partMap = {
     'slide3': '01', 'slide4': '01',
     'slide5': '02', 'slide6': '02',
-    'slide7': '03', 'slide8': '03', 'slide9': '03', 'slide10': '03',
+    'slide7': '03', 'slide8': '03', 'slide10': '03',
     'slide11': '03', 'slide12': '03', 'slide13': '03', 'slide13-2': '03',
     'slide14': '03', 'slide15': '03',
     'slide16': '04', 'slide22': '04',
