@@ -1007,18 +1007,18 @@
                         <!-- 시작점 -->
                         <div style="position: absolute; left: 120px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; background: var(--c-gold); border-radius: 50%; z-index: 2;"></div>
                         <p style="position: absolute; left: 100px; top: calc(50% + 18px); font-size: 15px; color: var(--c-gold);">시작점</p>
-                        <svg style="position: absolute; left: 129px; top: 40px; width: calc(100% - 190px); height: 300px;" viewBox="0 0 200 180">
+                        <svg style="position: absolute; left: 129px; top: 40px; width: calc(100% - 130px); height: 300px; overflow: visible;" viewBox="0 0 200 180">
                             <!-- 통과: 위로 올라감 (초록) -->
                             <path d="M0,90 C50,90 80,30 160,20" stroke="#00e676" stroke-width="3" fill="none"/>
+                            <!-- 통과 끝점 + 라벨 -->
+                            <circle cx="160" cy="20" r="6" fill="#00e676"/>
+                            <text x="172" y="25" fill="#00e676" font-size="14" font-weight="700" font-family="Pretendard, sans-serif">통과</text>
                             <!-- 실패: 아래로 내려감 (빨강) -->
-                            <path d="M0,90 C50,90 80,140 160,155" stroke="var(--c-red)" stroke-width="3" fill="none" stroke-dasharray="6,4"/>
+                            <path d="M0,90 C50,90 80,140 160,155" stroke="#ff2a5f" stroke-width="3" fill="none" stroke-dasharray="6,4"/>
+                            <!-- 실패 끝점 + 라벨 -->
+                            <circle cx="160" cy="155" r="6" fill="#ff2a5f"/>
+                            <text x="172" y="160" fill="#ff2a5f" font-size="14" font-weight="700" font-family="Pretendard, sans-serif">실패</text>
                         </svg>
-                        <!-- 통과 끝점 -->
-                        <div style="position: absolute; right: 40px; top: 65px; width: 16px; height: 16px; background: #00e676; border-radius: 50%;"></div>
-                        <p style="position: absolute; right: 20px; top: 48px; font-size: 14px; color: #00e676; font-weight: 700;">통과</p>
-                        <!-- 실패 끝점 -->
-                        <div style="position: absolute; right: 40px; bottom: 55px; width: 16px; height: 16px; background: var(--c-red); border-radius: 50%;"></div>
-                        <p style="position: absolute; right: 20px; bottom: 38px; font-size: 14px; color: var(--c-red); font-weight: 700;">실패</p>
                         <!-- 테스트 구간 라벨 -->
                         <p style="position: absolute; left: 50%; transform: translateX(-50%); bottom: 12px; font-size: 14px; color: var(--t-muted); font-weight: 600;">가치 테스트 구간</p>
                     </div>
@@ -1030,14 +1030,23 @@
                 </div>
             </div>
 
-            <!-- step 9: 핵심 대사 -->
+            <!-- step 9: 핵심 대사 (순차 애니메이션) -->
             <div class="substep detail-panel" data-step="9">
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center;">
-                    <p style="font-size: 20px; color: var(--t-muted); margin-bottom: 30px;">테스트를 통과하는 한 마디</p>
-                    <div style="background: var(--c-gold-glow); border: 2px solid rgba(254,229,0,0.4); border-radius: 24px; padding: 50px 60px;">
+                <style>
+                    @keyframes s9FadeUp {
+                        from { opacity: 0; transform: translateY(20px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    #s9-label { animation: s9FadeUp 0.6s ease forwards; opacity: 0; }
+                    #s9-quote { animation: s9FadeUp 0.7s ease 1s forwards; opacity: 0; }
+                    #s9-result { animation: s9FadeUp 0.7s ease 2.2s forwards; opacity: 0; }
+                </style>
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; text-align: center; gap: 30px;">
+                    <p id="s9-label" style="font-size: 20px; color: var(--t-muted); margin: 0;">테스트를 통과하는 한 마디</p>
+                    <div id="s9-quote" style="background: var(--c-gold-glow); border: 2px solid rgba(254,229,0,0.4); border-radius: 24px; padding: 50px 60px;">
                         <p style="font-size: 38px; color: var(--c-gold-bright); font-weight: 900; line-height: 1.5; margin: 0;">"우리 지금 알아가는 사이인데,<br>이게 맞아?"</p>
                     </div>
-                    <p style="font-size: 18px; color: var(--t-sub); margin-top: 30px;">행동이 아닌 <strong style="color: var(--t-heading);">관계</strong>를 걸었을 때, 가치가 올라간다.</p>
+                    <p id="s9-result" style="font-size: 20px; color: var(--t-sub); margin: 0;">행동이 아닌 <strong style="color: var(--t-heading);">관계</strong>로 딜을 쳤을 때, 가치가 올라간다.</p>
                 </div>
             </div>
 
