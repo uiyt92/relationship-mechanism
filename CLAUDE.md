@@ -29,11 +29,19 @@ ppt/
 ├── 카톡창.html             # 카카오톡 채팅 시뮬레이션
 ├── CLAUDE.md
 ├── analytics/              # 카피라이팅 분석 문서
-│   └── upselling-analysis.md
+│   ├── upselling-analysis.md
+│   ├── upselling-deep-analysis.md
+│   ├── full-copywriting-analysis.md
+│   └── full-copywriting-analysis-v2.md
 └── images/                 # 모든 이미지/영상 에셋
     ├── meetup1~4.jpg       # 간담회 사진
     ├── kakao_screenshot*.png # 카톡 피드백 스크린샷
     ├── feedback1.png        # 피드백 이미지
+    ├── before_after.jpg
+    ├── certification.png
+    ├── detail_page.png
+    ├── membership_210.jpg
+    ├── review_screenshot.png
     ├── jang_wonyoung.jpg
     ├── QR.png
     └── Video_moving_for_*.mp4
